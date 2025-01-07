@@ -121,10 +121,10 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-       url: "mailto:gwkcareer@gmail.com"
+      url: "mailto:gwkcareer@gmail.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-       url: "https://github.com/gwkcareer"
+      url: "https://github.com/gwkcareer"
 
 # Site Footer
 footer:
