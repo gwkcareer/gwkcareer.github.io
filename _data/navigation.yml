@@ -1,7 +1,7 @@
 # main links
 main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  - title: "검색"
+    url: "/search"
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
@@ -10,3 +10,25 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+
+  
+category-list:
+  - title: " - 개발기록 - "
+    children:
+      - title: "Java"
+        url: "/java"
+        category: "java"
+      - title: "JavaScript"
+        url: "/js"
+        category: "js"
+      - title: "Database"
+        url: "/db"
+        category: "db"
+  # - title: " - 메모장 - "
+  #   children:
+  #     - title: "일상"
+  #       url: "/daily"
+  #       category: "daily"
+  #     - title: "기타"
+  #       url:  "/etc"
+  #       category: "etc"

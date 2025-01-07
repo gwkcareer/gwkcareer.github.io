@@ -18,7 +18,7 @@ $indent-var: 1.3em !default;
 /* system typefaces */
 $serif: Georgia, Times, serif !default;
 $sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
-  "Helvetica Neue", "Lucida Grande", Arial, sans-serif !default;
+  "Helvetica Neue", "Lucida Grande", Arial, sans-serif, "Moneygraphy-Rounded.woff" !default;
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 
 /* sans serif typefaces */
@@ -152,7 +152,8 @@ $medium: 768px !default;
 $medium-wide: 900px !default;
 $large: 1024px !default;
 $x-large: 1280px !default;
-$max-width: $x-large !default;
+$custom-large: 1500px !default;  //내가 추가한 변수
+$max-width: $custom-large !default;
 
 /*
    Grid
