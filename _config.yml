@@ -13,13 +13,16 @@
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "dark" #"default" ,"air", "aqua", "contrast", "dirt", "neon", "mint", "plum", "sunrise"
+dark_theme_toggle        : true # 다크 모드 토글 기능 추가
+after_footer_scripts:
+  - /assets/js/custom/dark-theme.js
 
 # Site Settings
 locale                   : "ko-KR"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "yomyommy's DLog"
 title_separator          : "-"
-subtitle                 : "내 머릿속의 지우개.. 기록하자 친구야" # site tagline that appears below site title in masthead
+subtitle                 : # "내 머릿속의 지우개.. 기록하자 친구야" # site tagline that appears below site title in masthead
 name                     : "yomyommy"
 description              : "yomyommy의 개발블로그"
 url                      : "https://gwkcareer.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -115,23 +118,23 @@ analytics:
 author:
   name             : "yomyommy"
   avatar           : "/assets/images/에비츄우1.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "**머릿속에 지우개**<br>가 있어 기록해야 합니다."
-  location         : "Somewhere"
-  email            : "gwkcareer@gmail.com"
-  links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:gwkcareer@gmail.com"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/gwkcareer"
+  bio              : "**내 머릿속의 지우개.. **<br>기록하자 친구야"
+  # location         : "Somewhere"
+  # email            : "gwkcareer@gmail.com"
+  # links:
+  #   - label: "Email"
+  #     icon: "fas fa-fw fa-envelope-square"
+  #     url: "mailto:gwkcareer@gmail.com"
+  #   - label: "GitHub"
+  #     icon: "fab fa-fw fa-github"
+  #     url: "https://github.com/gwkcareer"
 
 # Site Footer
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/gwkcareer"
+# footer:
+#   links:
+#     - label: "GitHub"
+#       icon: "fab fa-fw fa-github"
+#       url: "https://github.com/gwkcareer"
 
 
 # Reading Files

@@ -22,8 +22,8 @@ category-list:
         url: "/js"
         category: "js"
       - title: "Database"
-        url: "/db"
-        category: "db"
+        url: "/database"
+        category: "database"
   # - title: " - 메모장 - "
   #   children:
   #     - title: "일상"

@@ -1,6 +1,6 @@
 ---
 title: "Database"
 layout: archive
-permalink: /db
+permalink: /database
 author_profile: true
 ---
