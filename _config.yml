@@ -117,7 +117,7 @@ author:
   avatar           : "/assets/images/에비츄우1.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "**머릿속에 지우개**<br>가 있어 기록해야 합니다."
   location         : "Somewhere"
-  email            :
+  email            : "gwkcareer@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
