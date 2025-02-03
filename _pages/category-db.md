@@ -1,9 +1,9 @@
 ---
-title: "Java"
+title: "Database"
 layout: archive
-permalink: /java
+permalink: /db
 author_profile: true
 ---
 
-{% assign posts = site.categories.java %}
+{% assign posts = site.categories.db %}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
