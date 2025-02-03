@@ -2,6 +2,7 @@
 title: "JavaScript"
 layout: archive
 permalink: /js
+category: js
 author_profile: true
 ---
 

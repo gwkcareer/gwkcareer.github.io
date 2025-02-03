@@ -2,6 +2,7 @@
 title: "Database"
 layout: archive
 permalink: /db
+category: db
 author_profile: true
 ---
 
