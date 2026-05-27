@@ -1,0 +1,929 @@
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+    format('woff');
+  font-weight: normal;
+}
+
+body {
+  font-family: 'GmarketSans', sans-serif;
+  background-color: #fffaf5 !important;
+}
+
+/* ── 사이드바 ── */
+#sidebar {
+  background: #fff8f0 !important;
+  border-right: 0.5px solid #f0dcc8;
+}
+
+.site-title {
+  font-size: 1.3rem !important;
+  color: #5a3e2b !important;
+  font-weight: 700;
+}
+
+.site-subtitle {
+  color: #a0846a !important;
+  font-size: 0.82rem;
+}
+
+#sidebar .nav-link {
+  color: #7a5540 !important;
+  border-radius: 8px;
+}
+
+#sidebar .nav-link:hover,
+#sidebar .nav-item.active .nav-link {
+  background: #fde8cc !important;
+  color: #5a3e2b !important;
+}
+
+.category-tree .nav-link {
+  color: #7a5540 !important;
+  font-size: 0.88rem;
+}
+
+.category-tree .nav-link:hover {
+  background: #fde8cc !important;
+}
+
+.cat-children .nav-link {
+  color: #a0846a !important;
+  font-size: 0.82rem;
+}
+
+/* ── 홈 포스트 카드 ── */
+#post-list .card-wrapper {
+  border: 0.5px solid #f0dcc8 !important;
+  border-radius: 14px !important;
+  background: #fff8f0 !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease;
+  margin-bottom: 14px;
+}
+
+#post-list .card-wrapper:hover {
+  background: #fff0e0 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180, 120, 80, 0.1) !important;
+}
+
+#post-list .card-title {
+  color: #5a3e2b !important;
+  font-weight: 700;
+}
+
+#post-list .card-text {
+  color: #a0846a !important;
+  font-size: 0.88rem;
+}
+
+#post-list .post-meta {
+  color: #c9a882 !important;
+  font-size: 0.8rem;
+}
+
+/* ── 카테고리/태그 글 목록 카드형 ── */
+#page-category ul.content,
+#page-tag ul.content {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+#page-category ul.content li,
+#page-tag ul.content li {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: #fff8f0;
+  border: 0.5px solid #f0dcc8;
+  transition: all 0.2s ease;
+}
+
+#page-category ul.content li:hover,
+#page-tag ul.content li:hover {
+  background: #fff0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180, 120, 80, 0.1);
+}
+
+#page-category ul.content li a,
+#page-tag ul.content li a {
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: #5a3e2b;
+  margin-bottom: 6px;
+}
+
+#page-category ul.content li .dash,
+#page-tag ul.content li .dash {
+  display: none;
+}
+
+#page-category ul.content li span,
+#page-tag ul.content li span {
+  font-size: 0.78rem;
+  color: #c9a882;
+}
+
+/* ── 태그 뱃지 ── */
+#tags div {
+  margin: 4px;
+}
+
+#tags a.tag {
+  display: inline-block;
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+#tags div:nth-child(6n + 1) a.tag {
+  background: #fde8cc;
+  color: #c9845a;
+}
+#tags div:nth-child(6n + 2) a.tag {
+  background: #d5f5e3;
+  color: #1e8449;
+}
+#tags div:nth-child(6n + 3) a.tag {
+  background: #fdf2f8;
+  color: #8e44ad;
+}
+#tags div:nth-child(6n + 4) a.tag {
+  background: #d6eaf8;
+  color: #1a6fa8;
+}
+#tags div:nth-child(6n + 5) a.tag {
+  background: #fef9e7;
+  color: #b7950b;
+}
+#tags div:nth-child(6n + 6) a.tag {
+  background: #d1f2eb;
+  color: #148f77;
+}
+
+#tags a.tag:hover {
+  filter: brightness(0.92);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#tags a.tag span {
+  font-size: 0.75rem;
+  margin-left: 4px;
+  opacity: 0.75;
+}
+
+/* ── 태그/카테고리 카드 목록 ── */
+.post-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.post-card-item {
+  display: block;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: #ffffff !important;
+  border: 0.5px solid #f0dcc8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.post-card-item:hover {
+  background: #fff8f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180, 120, 80, 0.1);
+}
+
+.post-card-title {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: #5a3e2b;
+  margin-bottom: 6px;
+}
+
+.post-card-desc {
+  font-size: 0.85rem;
+  color: #a0846a;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.post-card-meta {
+  font-size: 0.78rem;
+  color: #c9a882;
+}
+
+/* ── 메인 배경 ── */
+#main-wrapper {
+  background-color: #fdf6ef !important;
+}
+
+/* ── 상단 topbar ── */
+#topbar-wrapper {
+  background-color: #fff8f0 !important;
+  border-bottom: 0.5px solid #f0dcc8 !important;
+}
+
+#topbar {
+  color: #7a5540 !important;
+}
+
+/* ── 하단 footer ── */
+footer {
+  background-color: #fff8f0 !important;
+  border-top: 0.5px solid #f0dcc8 !important;
+  color: #c9a882 !important;
+}
+
+footer a {
+  color: #c9845a !important;
+}
+
+/* ── 홈 카드 카테고리 뱃지 ── */
+#post-list .categories {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+#post-list .categories span,
+#post-list .categories {
+  font-size: 0;
+}
+
+#post-list .post-meta .categories {
+  font-size: 0;
+}
+
+.post-meta .categories span {
+  display: none;
+}
+
+/* 카테고리를 뱃지로 */
+#post-list .card-wrapper .categories {
+  font-size: 0;
+}
+
+/* ── 카테고리 뱃지 공통 ── */
+.cat-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #fde8cc;
+  color: #c9845a;
+  margin-right: 4px;
+}
+
+/* ── 카테고리 뱃지 ── */
+.cat-badges {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cat-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.cat-badge-1 {
+  background: #fde8cc;
+  color: #c9845a;
+}
+.cat-badge-2 {
+  background: #d5f5e3;
+  color: #1e8449;
+}
+.cat-badge-3 {
+  background: #fdf2f8;
+  color: #8e44ad;
+}
+.cat-badge-4 {
+  background: #d6eaf8;
+  color: #1a6fa8;
+}
+.cat-badge-5 {
+  background: #fef9e7;
+  color: #b7950b;
+}
+
+/* ── 브레드크럼 링크 ── */
+#breadcrumb a,
+.breadcrumb-item a {
+  color: #c9845a !important;
+  text-decoration: none;
+}
+
+nav[aria-label='breadcrumb'] a {
+  color: #c9845a !important;
+}
+
+/* 상단 홈 링크 */
+#topbar a {
+  color: #c9845a !important;
+}
+
+/* ── 메인 배경 더 연하게 ── */
+#main-wrapper {
+  background-color: #fefaf6 !important;
+}
+
+.container {
+  background-color: transparent !important;
+}
+
+/* ── 인기 태그 뱃지 ── */
+#panel-wrapper .badge {
+  background: #fde8cc !important;
+  color: #c9845a !important;
+  border: none !important;
+}
+
+.trending-tags a {
+  background: #fde8cc !important;
+  color: #c9845a !important;
+  border-radius: 20px !important;
+  padding: 3px 10px !important;
+  font-size: 0.78rem !important;
+  text-decoration: none !important;
+}
+
+.trending-tags a:hover {
+  background: #fcd4a8 !important;
+}
+
+/* ── 인기 태그 뱃지 오버라이드 ── */
+a.post-tag.btn-outline-primary {
+  background: #fde8cc !important;
+  color: #c9845a !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 3px 12px !important;
+  font-size: 0.78rem !important;
+}
+
+a.post-tag.btn-outline-primary:hover {
+  background: #fcd4a8 !important;
+  color: #a0622e !important;
+}
+
+/* ── 배경/카드 대비 조정 ── */
+body {
+  background-color: #fdf0e0 !important;
+}
+
+#main-wrapper {
+  background-color: #fdf0e0 !important;
+}
+
+#sidebar {
+  background: #fdf0e0 !important;
+}
+
+#post-list .card-wrapper {
+  background: #ffffff !important;
+  border: 0.5px solid #f0dcc8 !important;
+}
+
+#post-list .card-wrapper:hover {
+  background: #fff8f0 !important;
+}
+
+.post-card-item {
+  background: #ffffff !important;
+  border: 0.5px solid #f0dcc8 !important;
+}
+
+.post-card-item:hover {
+  background: #fff8f0 !important;
+}
+
+/* ── 배경/카드 원복 ── */
+body {
+  background-color: #fffaf5 !important;
+}
+
+#main-wrapper {
+  background-color: #fefaf6 !important;
+}
+
+#sidebar {
+  background: #fff8f0 !important;
+}
+
+#post-list .card-wrapper {
+  background: #fff8f0 !important;
+  border: 0.5px solid #f0dcc8 !important;
+}
+
+.post-card-item {
+  background: #fff8f0 !important;
+  border: 0.5px solid #f0dcc8 !important;
+}
+
+/* ── 오른쪽 패널 배경 더 연하게 ── */
+#panel-wrapper {
+  background-color: transparent !important;
+}
+
+/* ── 헤더/푸터 배경 제거 ── */
+#topbar-wrapper {
+  background-color: transparent !important;
+  border-bottom: 0.5px solid #f0dcc8 !important;
+}
+
+footer {
+  background-color: transparent !important;
+  border-top: 0.5px solid #f0dcc8 !important;
+}
+
+/* ── 태그 뱃지 크기/색 개선 ── */
+#tags a.tag {
+  padding: 8px 20px !important;
+  font-size: 0.92rem !important;
+  border-radius: 24px !important;
+}
+
+#tags div:nth-child(6n + 1) a.tag {
+  background: #fde8cc !important;
+  color: #a0522d !important;
+}
+#tags div:nth-child(6n + 2) a.tag {
+  background: #c8f0dc !important;
+  color: #1a6b3a !important;
+}
+#tags div:nth-child(6n + 3) a.tag {
+  background: #f5e0f8 !important;
+  color: #7b2d8b !important;
+}
+#tags div:nth-child(6n + 4) a.tag {
+  background: #c8e4f8 !important;
+  color: #1a5a8a !important;
+}
+#tags div:nth-child(6n + 5) a.tag {
+  background: #fef3cc !important;
+  color: #8a6a00 !important;
+}
+#tags div:nth-child(6n + 6) a.tag {
+  background: #c8f0ea !important;
+  color: #0d6e5e !important;
+}
+
+/* ── 인기 태그 뱃지 크기/색 개선 ── */
+a.post-tag.btn-outline-primary {
+  padding: 6px 16px !important;
+  font-size: 0.85rem !important;
+  border-radius: 24px !important;
+  background: #fde8cc !important;
+  color: #a0522d !important;
+  border: none !important;
+  margin: 3px !important;
+}
+
+a.post-tag.btn-outline-primary:hover {
+  background: #fcd4a8 !important;
+  color: #7a3a18 !important;
+}
+
+/* ── 태그 뱃지 파스텔 멀티컬러 ── */
+#tags div:nth-child(7n + 1) a.tag {
+  background: #ffe4cc !important;
+  color: #8a4010 !important;
+}
+#tags div:nth-child(7n + 2) a.tag {
+  background: #d4f0e0 !important;
+  color: #1a5e38 !important;
+}
+#tags div:nth-child(7n + 3) a.tag {
+  background: #e8d8f8 !important;
+  color: #5c2d8a !important;
+}
+#tags div:nth-child(7n + 4) a.tag {
+  background: #cce8f8 !important;
+  color: #0c4478 !important;
+}
+#tags div:nth-child(7n + 5) a.tag {
+  background: #fef0cc !important;
+  color: #7a5200 !important;
+}
+#tags div:nth-child(7n + 6) a.tag {
+  background: #d0f0ec !important;
+  color: #0a5c50 !important;
+}
+#tags div:nth-child(7n + 7) a.tag {
+  background: #fce0e0 !important;
+  color: #8a1a1a !important;
+}
+
+/* ── 인기 태그도 동일하게 ── */
+a.post-tag.btn-outline-primary {
+  background: #ffe4cc !important;
+  color: #8a4010 !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 7px 18px !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  margin: 3px !important;
+}
+
+a.post-tag.btn-outline-primary:hover {
+  filter: brightness(0.92) !important;
+}
+
+/* ── 카테고리 뱃지도 파스텔 멀티컬러 ── */
+.cat-badge-1 {
+  background: #ffe4cc !important;
+  color: #8a4010 !important;
+}
+.cat-badge-2 {
+  background: #d4f0e0 !important;
+  color: #1a5e38 !important;
+}
+.cat-badge-3 {
+  background: #e8d8f8 !important;
+  color: #5c2d8a !important;
+}
+.cat-badge-4 {
+  background: #cce8f8 !important;
+  color: #0c4478 !important;
+}
+.cat-badge-5 {
+  background: #fef0cc !important;
+  color: #7a5200 !important;
+}
+
+/* ── 오른쪽 패널 배경 더 연하게 ── */
+#panel-wrapper {
+  opacity: 0.85;
+}
+
+#panel-wrapper .access {
+  background: transparent !important;
+}
+
+/* ── 오른쪽 패널 배경 연하게 ── */
+#panel-wrapper {
+  opacity: 1 !important;
+  background-color: #fefcfa !important;
+}
+
+/* ── 전체 배경을 패널색으로 ── */
+body {
+  background-color: #fefaf6 !important;
+}
+
+#main-wrapper {
+  background-color: #fefaf6 !important;
+}
+
+#sidebar {
+  background: #fefaf6 !important;
+}
+
+/* ── 메인/배경만 #fefcfa ── */
+body {
+  background-color: #fefcfa !important;
+}
+
+#main-wrapper {
+  background-color: #fefcfa !important;
+}
+
+#sidebar {
+  background: #fff8f0 !important;
+}
+
+/* ── 사이드바 이모지 아이콘 ── */
+.nav-emoji {
+  font-size: 1.1rem;
+  margin-right: 4px;
+}
+
+/* ── 다크모드 ── */
+[data-mode='dark'] body {
+  background-color: #1e1a17 !important;
+}
+
+[data-mode='dark'] #main-wrapper {
+  background-color: #1e1a17 !important;
+}
+
+[data-mode='dark'] #sidebar {
+  background: #261f1a !important;
+  border-right: 0.5px solid #3d2e24 !important;
+}
+
+[data-mode='dark'] .site-title {
+  color: #f0d9c0 !important;
+}
+
+[data-mode='dark'] .site-subtitle {
+  color: #a08070 !important;
+}
+
+[data-mode='dark'] #sidebar .nav-link {
+  color: #c8a888 !important;
+}
+
+[data-mode='dark'] #sidebar .nav-link:hover,
+[data-mode='dark'] #sidebar .nav-item.active .nav-link {
+  background: #3d2e24 !important;
+  color: #f0d9c0 !important;
+}
+
+[data-mode='dark'] #post-list .card-wrapper {
+  background: #261f1a !important;
+  border-color: #3d2e24 !important;
+}
+
+[data-mode='dark'] #post-list .card-wrapper:hover {
+  background: #2e2318 !important;
+}
+
+[data-mode='dark'] #post-list .card-title {
+  color: #f0d9c0 !important;
+}
+
+[data-mode='dark'] #post-list .card-text {
+  color: #a08070 !important;
+}
+
+[data-mode='dark'] .post-card-item {
+  background: #261f1a !important;
+  border-color: #3d2e24 !important;
+}
+
+[data-mode='dark'] .post-card-item:hover {
+  background: #2e2318 !important;
+}
+
+[data-mode='dark'] .post-card-title {
+  color: #f0d9c0 !important;
+}
+
+[data-mode='dark'] .post-card-desc {
+  color: #a08070 !important;
+}
+
+[data-mode='dark'] footer {
+  border-top-color: #3d2e24 !important;
+  color: #6a5040 !important;
+}
+
+/* ── 다크모드 오른쪽 패널 ── */
+[data-mode='dark'] #panel-wrapper {
+  background-color: #1e1a17 !important;
+}
+
+[data-mode='dark'] #panel-wrapper .access {
+  background: transparent !important;
+}
+
+[data-mode='dark'] #panel-wrapper a {
+  color: #c8a888 !important;
+}
+
+[data-mode='dark'] #panel-wrapper h2 {
+  color: #f0d9c0 !important;
+}
+
+/* ── 다크모드 글자색 전체 ── */
+[data-mode='dark'] {
+  color: #d4b896 !important;
+}
+
+[data-mode='dark'] h1,
+[data-mode='dark'] h2,
+[data-mode='dark'] h3,
+[data-mode='dark'] h4 {
+  color: #f0d9c0 !important;
+}
+
+[data-mode='dark'] p,
+[data-mode='dark'] li {
+  color: #c8a888 !important;
+}
+
+[data-mode='dark'] strong {
+  color: #f0d9c0 !important;
+}
+
+[data-mode='dark'] a {
+  color: #e8b888 !important;
+}
+
+[data-mode='dark'] a:hover {
+  color: #f0d9c0 !important;
+}
+
+[data-mode='dark'] .post-meta,
+[data-mode='dark'] .text-muted {
+  color: #7a5a40 !important;
+}
+
+[data-mode='dark'] hr {
+  border-color: #3d2e24 !important;
+}
+
+[data-mode='dark'] .category-tree .nav-link {
+  color: #c8a888 !important;
+}
+
+[data-mode='dark'] .cat-children .nav-link {
+  color: #a08070 !important;
+}
+
+/* ── 날짜/뱃지 간격 전체 ── */
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#post-list .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#post-list .post-meta .me-auto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cat-badges {
+  margin-left: 4px;
+  display: inline-flex;
+  gap: 6px;
+}
+
+/* ── 태그/카테고리 페이지 기본 타이틀 숨김 ── */
+#tags ~ h1,
+.page-header h1 {
+  display: none !important;
+}
+
+/* ── 검색 결과 카드 ── */
+#search-results .card {
+  border-radius: 14px !important;
+  background: #fff8f0 !important;
+  border: 0.5px solid #f0dcc8 !important;
+  box-shadow: none !important;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+#search-results .card:hover {
+  background: #fff0e0 !important;
+  transform: translateY(-2px);
+}
+
+#search-results .card a {
+  color: #5a3e2b !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#search-results .card p {
+  color: #a0846a !important;
+  font-size: 0.85rem;
+}
+
+/* ── 검색 결과 카드 ── */
+#search-results > article {
+  border-radius: 14px !important;
+  background: #fff8f0 !important;
+  border: 0.5px solid #f0dcc8 !important;
+  padding: 16px 20px !important;
+  transition: all 0.2s ease;
+}
+
+#search-results > article:hover {
+  background: #fff0e0 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180,120,80,0.1) !important;
+}
+
+#search-results > article a {
+  color: #5a3e2b !important;
+  font-size: 1rem !important;
+}
+
+#search-results > article p {
+  color: #a0846a !important;
+  font-size: 0.85rem !important;
+}
+
+#search-results > article i {
+  color: #c9a882 !important;
+}
+
+/* ── 검색 결과 카드 ── */
+#search-results > article {
+  border-radius: 14px !important;
+  background: #fff8f0 !important;
+  border: 0.5px solid #f0dcc8 !important;
+  padding: 16px 20px !important;
+  transition: all 0.2s ease;
+}
+
+#search-results > article:hover {
+  background: #fff0e0 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180,120,80,0.1) !important;
+}
+
+#search-results > article a {
+  color: #5a3e2b !important;
+  font-size: 1rem !important;
+}
+
+#search-results > article p {
+  color: #a0846a !important;
+  font-size: 0.85rem !important;
+}
+
+#search-results > article i {
+  color: #c9a882 !important;
+}
+
+/* ── 검색 결과 카드 최종 ── */
+#search-results article {
+  border-radius: 14px !important;
+  background: #fff8f0 !important;
+  border: 0.5px solid #f0dcc8 !important;
+  padding: 18px 22px !important;
+  margin-bottom: 12px !important;
+  transition: all 0.2s ease;
+  width: 100% !important;
+}
+
+#search-results article:hover {
+  background: #fff0e0 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180,120,80,0.1) !important;
+}
+
+#search-results article h2 {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 6px !important;
+}
+
+#search-results article h2 a {
+  color: #5a3e2b !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+}
+
+#search-results article .post-meta {
+  font-size: 0.78rem !important;
+  color: #c9a882 !important;
+  margin-bottom: 8px !important;
+}
+
+#search-results article p {
+  font-size: 0.85rem !important;
+  color: #a0846a !important;
+  line-height: 1.6 !important;
+}
+
+/* ── 검색 결과 카드 overflow 수정 ── */
+#search-result-wrapper {
+  overflow: visible !important;
+}
+
+#search-results {
+  overflow: visible !important;
+  align-items: stretch !important;
+}
+
+#search-results article {
+  overflow: visible !important;
+  margin-top: 12px !important;
+}
