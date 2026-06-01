@@ -698,14 +698,8 @@ article header .author {
 }
 
 /* ── 포스트 헤더 업데이트 날짜 + 작성자 숨김 ── */
-article header #post-last-modified,
-article header .post-meta span:has(.fa-rotate),
-article header .post-meta span:has(.fa-history) {
-  display: none !important;
-}
-
-article header .post-meta .author,
-article header .post-meta .d-flex {
+article .post-meta > span:nth-child(2),
+article .post-meta .d-flex {
   display: none !important;
 }
 
