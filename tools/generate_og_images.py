@@ -46,6 +46,23 @@ DATE_C  = '#c0a898'
 AVA_BG  = (245, 237, 232)   # #f5ede8
 AVA_BD  = (217, 200, 184)   # #d9c8b8
 
+# 카테고리별 칩 색상 (bg, text)
+CATEGORY_COLORS = {
+    'AI':              ((237, 231, 246), (69,  39, 160)),
+    'Backend':         ((232, 245, 233), (46, 125,  50)),
+    '1. Backend':      ((232, 245, 233), (46, 125,  50)),
+    'Database':        ((227, 242, 253), (21, 101, 192)),
+    '2. Database':     ((227, 242, 253), (21, 101, 192)),
+    'Server & Infra':  ((224, 247, 250), (0, 105,  92)),
+    '3. Server & Infra': ((224, 247, 250), (0, 105, 92)),
+    '개발도구':         ((255, 248, 225), (245, 127,  17)),
+    '4. 개발도구':      ((255, 248, 225), (245, 127,  17)),
+    '자격증':           ((255, 243, 224), (230,  81,   0)),
+    '5. 자격증':        ((255, 243, 224), (230,  81,   0)),
+}
+DEFAULT_CHIP_BG   = (253, 232, 204)   # #fde8cc
+DEFAULT_CHIP_TEXT = (201, 124,  74)   # #c97c4a
+
 # ── 레이아웃 수치 (HTML px × 2) ──────────────────────────────────────────────
 PAD_X   = 96   # 48px × 2
 PAD_Y   = 88   # 44px × 2
@@ -111,13 +128,25 @@ def wrap_text(draw, text, font, max_w):
         lines.append(cur)
     return lines
 
+def draw_chip(draw, x, y, text, font, bg_color, text_color):
+    """둥근 배경 칩 그리기, 칩의 높이 반환"""
+    pad_x, pad_y, radius = 20, 10, 14
+    tw = draw.textbbox((0, 0), text, font=font)[2]
+    th = draw.textbbox((0, 0), text, font=font)[3]
+    chip_w = tw + pad_x * 2
+    chip_h = th + pad_y * 2
+    # 둥근 사각형
+    draw.rounded_rectangle([x, y, x + chip_w, y + chip_h], radius=radius, fill=bg_color)
+    draw.text((x + pad_x, y + pad_y), text, font=font, fill=text_color)
+    return chip_h, chip_w
+
 # ── 메인 렌더 ─────────────────────────────────────────────────────────────────
-def render_og(title, tags, date, output_path):
+def render_og(title, tags, date, output_path, category=''):
     font_path = find_font()
     img  = Image.new('RGB', (W, H), BG)
     draw = ImageDraw.Draw(img)
 
-    # 테두리 (border: 1.5px solid #e8d8cc)
+    # 테두리
     draw.rectangle([0, 0, W - 1, H - 1], outline=BORDER, width=BORDER_W)
 
     # 상단 그라디언트 바
@@ -127,23 +156,35 @@ def render_og(title, tags, date, output_path):
     f_chip  = ImageFont.truetype(font_path, SZ_CHIP)
     f_title = ImageFont.truetype(font_path, SZ_TITLE)
 
+    # 카테고리 칩 색상 결정
+    chip_colors = CATEGORY_COLORS.get(category, None)
+    chip_bg   = chip_colors[0] if chip_colors else DEFAULT_CHIP_BG
+    chip_text = chip_colors[1] if chip_colors else DEFAULT_CHIP_TEXT
+    chip_label = category if category else (tags or '')
+
     # 칩+제목 그룹 높이 계산
-    chip_h  = draw.textbbox((0, 0), tags or '#', font=f_chip)[3]
+    dummy_chip_h = draw.textbbox((0, 0), chip_label or '#', font=f_chip)[3] + 20  # pad_y*2
     lines   = wrap_text(draw, title, f_title, W - PAD_X * 2)
     n_lines = min(len(lines), 2)
-    group_h = chip_h + MT_TITLE + LH_TITLE * n_lines
+    group_h = dummy_chip_h + MT_TITLE + LH_TITLE * n_lines
 
-    # 수직 위치: 사용 가능 공간의 38% 지점에 그룹 배치 (짧은 제목도 쏠리지 않게)
-    footer_top = H - PAD_Y - AVA_D  # 466px
-    avail = footer_top - BAR_H      # 458px
+    # 수직 위치
+    footer_top = H - PAD_Y - AVA_D
+    avail = footer_top - BAR_H
     y = BAR_H + max(int((avail - group_h) * 0.38), PAD_Y - BAR_H)
 
-    # 칩(태그)
-    if tags:
-        draw.text((PAD_X, y), tags, font=f_chip, fill=CHIP_C)
+    # 카테고리 칩
+    chip_h = 0
+    if chip_label:
+        chip_h, _ = draw_chip(draw, PAD_X, y, chip_label, f_chip, chip_bg, chip_text)
+        # 태그가 별도로 있으면 칩 옆에 작게 표시
+        if tags and category:
+            tag_x = PAD_X + _ + 16
+            draw.text((tag_x, y + (chip_h - draw.textbbox((0,0), tags, font=f_chip)[3]) // 2),
+                      tags, font=f_chip, fill=CHIP_C)
 
     # 제목
-    title_y = y + chip_h + MT_TITLE
+    title_y = y + (chip_h or dummy_chip_h) + MT_TITLE
     for line in lines[:2]:
         draw.text((PAD_X, title_y), line, font=f_title, fill=TITLE_C)
         title_y += LH_TITLE
@@ -196,4 +237,4 @@ def render_og(title, tags, date, output_path):
 
 if __name__ == '__main__':
     data = json.loads(sys.argv[1])
-    render_og(data['title'], data['tags'], data['date'], data['output_path'])
+    render_og(data['title'], data['tags'], data['date'], data['output_path'], data.get('category', ''))

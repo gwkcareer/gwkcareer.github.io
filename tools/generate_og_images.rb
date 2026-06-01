@@ -31,6 +31,9 @@ Dir.glob(File.join(POSTS_DIR, '**', '*.{md,markdown}')).sort.each do |post_file|
              ''
            end
 
+  categories = Array(front_matter['categories'])
+  category   = categories.last.to_s  # 가장 하위 카테고리 사용
+
   slug        = File.basename(post_file, '.*').sub(/^\d{4}-\d{2}-\d{2}-/, '')
   output_path = File.join(OUTPUT_DIR, "#{slug}.png")
 
@@ -40,7 +43,7 @@ Dir.glob(File.join(POSTS_DIR, '**', '*.{md,markdown}')).sort.each do |post_file|
   end
 
   begin
-    data = JSON.generate({ title: title, tags: tags, date: date, output_path: output_path })
+    data = JSON.generate({ title: title, tags: tags, date: date, category: category, output_path: output_path })
     system('python3', PY_SCRIPT, data) or raise 'Python 스크립트 실패'
     puts "  ✓ #{File.basename(output_path)}"
     generated += 1
