@@ -90,7 +90,15 @@ layout: default
       {% endcase %}
       <a href="{{ post.url | relative_url }}" class="hh-card">
         <div class="hh-card-thumb" style="background:{{ bg }}">
-          <span class="hh-card-emoji">{{ emoji }}</span>
+          {% assign og_slug = post.slug | default: post.path | split: '/' | last | remove: '.md' %}
+          <img
+            src="{{ '/assets/img/og/posts/' | append: og_slug | append: '.png' | relative_url }}"
+            alt="{{ post.title }}"
+            class="hh-card-og"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+            loading="lazy"
+          >
+          <span class="hh-card-emoji" style="display:none">{{ emoji }}</span>
         </div>
         <div class="hh-card-body">
           {% if post.categories.size > 0 %}
