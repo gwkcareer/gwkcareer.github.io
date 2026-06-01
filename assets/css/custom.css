@@ -884,7 +884,7 @@ footer p:last-child {
    검색 결과 페이지
    ════════════════════════════════ */
 
-#search-result-wrapper {
+#custom-search-wrapper {
   max-width: 860px;
   width: 100%;
   margin: 0 auto;
@@ -913,7 +913,7 @@ footer p:last-child {
   font-weight: 600;
 }
 
-#search-results {
+#custom-search-results {
   display: flex;
   flex-direction: column;
 }
@@ -927,7 +927,6 @@ footer p:last-child {
   text-decoration: none !important;
   transition: padding-left 0.15s ease;
 }
-.sr-item:first-child { border-top: 0.5px solid #ecddd4; }
 .sr-item:hover { padding-left: 4px; }
 
 .sr-accent {
