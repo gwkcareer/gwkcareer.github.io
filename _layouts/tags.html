@@ -1,18 +1,60 @@
 ---
 layout: page
 ---
-<div id="tags" class="d-flex flex-wrap mx-xl-2">
-  {% assign tags = '' | split: '' %}
-  {% for t in site.tags %}
-    {% assign tags = tags | push: t[0] %}
-  {% endfor %}
-  {% assign sorted_tags = tags | sort_natural %}
-  {% for t in sorted_tags %}
-    <div>
-      <a class="tag" href="{{ t | slugify | url_encode | prepend: '/tags/' | append: '/' | relative_url }}">
-        {{ t -}}
-        <span class="text-muted">{{ site.tags[t].size }}</span>
+{% assign all_tags = '' | split: '' %}
+{% for t in site.tags %}
+  {% assign all_tags = all_tags | push: t[0] %}
+{% endfor %}
+{% assign sorted_tags = all_tags | sort_natural %}
+
+{% assign total_posts = 0 %}
+{% for t in site.tags %}
+  {% assign total_posts = total_posts | plus: t[1].size %}
+{% endfor %}
+
+<div id="tags-page">
+  <div class="tags-header">
+    <h2 class="tags-title">태그</h2>
+    <span class="tags-stat">{{ all_tags.size }}개 · {{ total_posts }}편</span>
+  </div>
+
+  <div class="tag-cloud">
+    {% for t in sorted_tags %}
+      {% assign cnt = site.tags[t].size %}
+      {% if cnt >= 5 %}
+        {% assign sz = 'tag-lg' %}
+      {% elsif cnt >= 2 %}
+        {% assign sz = 'tag-md' %}
+      {% else %}
+        {% assign sz = 'tag-sm' %}
+      {% endif %}
+      <a class="tag {{ sz }}" href="{{ t | slugify | url_encode | prepend: '/tags/' | append: '/' | relative_url }}">
+        {{ t }}<span class="tag-cnt">{{ cnt }}</span>
       </a>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
+
+  <hr class="tags-divider">
+
+  <div class="tags-recent-label">최근 글</div>
+  <div class="tags-recent-list">
+    {% assign recent_posts = site.posts | limit: 5 %}
+    {% for post in recent_posts %}
+      {% assign tag = post.tags[0] %}
+      {% assign tag_index = 0 %}
+      {% for t in sorted_tags %}
+        {% if t == tag %}
+          {% assign tag_index = forloop.index0 %}
+        {% endif %}
+      {% endfor %}
+      {% assign color_num = tag_index | modulo: 7 | plus: 1 %}
+      <a href="{{ post.url | relative_url }}" class="tags-recent-item">
+        {% if tag %}
+          <span class="tags-recent-tag tag-color-{{ color_num }}">{{ tag }}</span>
+        {% endif %}
+        <span class="tags-recent-title">{{ post.title }}</span>
+        <span class="tags-recent-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+      </a>
+    {% endfor %}
+  </div>
 </div>
