@@ -5,26 +5,26 @@ layout: page
 <div id="page-tag">
   <h1 class="ps-lg-2">
     <i class="fa fa-tag fa-fw text-muted"></i>
-      {{ page.title }}
+    {{ page.title }}
     <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
   </h1>
-  <div class="post-card-list">
+  <div class="sr-list">
     {% for post in page.posts %}
-      <a href="{{ post.url | relative_url }}" class="post-card-item">
-        <div class="post-card-title">{{ post.title }}</div>
-        <div class="post-card-desc">
-          {{ post.description | default: post.excerpt | strip_html | truncate: 100 }}
-        </div>
-        <div class="post-card-meta">
-          <i class="far fa-calendar fa-fw"></i>
-          {% include datetime.html date=post.date lang=lang %}
-          {% if post.categories.size > 0 %}
-            <span class="cat-badges">
-              {% for category in post.categories %}
-                <span class="cat-badge cat-badge-{{ forloop.index }}">{{ category }}</span>
-              {% endfor %}
-            </span>
-          {% endif %}
+      <a href="{{ post.url | relative_url }}" class="sr-item">
+        <div class="sr-item-inner">
+          <div class="sr-item-meta">
+            <i class="far fa-calendar fa-fw"></i>
+            {% include datetime.html date=post.date lang=lang %}
+            {% if post.categories.size > 0 %}
+              <span class="cat-badges">
+                {% for category in post.categories %}
+                  <span class="cat-badge cat-badge-{{ forloop.index }}">{{ category }}</span>
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+          <h2 class="sr-item-title">{{ post.title }}</h2>
+          <p class="sr-item-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 120 }}</p>
         </div>
       </a>
     {% endfor %}

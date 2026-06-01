@@ -1,16 +1,24 @@
 ---
 layout: default
 ---
-
 {% include lang.html %}
 
 <article class="px-1">
   {% if page.layout == 'page' or page.collection == 'tabs' %}
     {% assign tab_key = page.title | downcase %}
     {% assign title = site.data.locales[lang].tabs[tab_key] | default: page.title %}
+    {% unless page.url contains '/about' %}
     <h1 class="dynamic-title">
-      {{ title }}
+      {% if page.url contains '/tags' -%}
+        <span class="page-title-emoji">🏷️</span>
+      {% elsif page.url contains '/categories' -%}
+        <span class="page-title-emoji">📁</span>
+      {% elsif page.icon -%}
+        <i class="{{ page.icon }} me-2"></i>
+      {% endif -%}
+      {{- title }}
     </h1>
+    {% endunless %}
     <div class="content">
       {{ content }}
     </div>

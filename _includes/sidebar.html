@@ -16,6 +16,20 @@
   </header>
   <!-- .profile-wrapper -->
 
+  <!-- 검색바 -->
+  <div class="sidebar-search">
+    <div class="sidebar-search-wrap">
+      <i class="fas fa-search sidebar-search-icon"></i>
+      <input
+        id="search-input"
+        type="text"
+        class="sidebar-search-input"
+        placeholder="검색..."
+        autocomplete="off"
+      >
+    </div>
+  </div>
+
   <nav class="flex-column flex-grow-1 w-100 ps-0">
     <!-- category tree -->
     {% assign sub_cat_list = '' %}

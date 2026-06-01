@@ -24,7 +24,15 @@ layout: compress
         {% include topbar.html lang=lang %}
 
         <div class="row flex-grow-1">
-          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+          {% assign hide_panel = false %}
+          {% if page.layout == 'home' or page.layout == 'post' or page.layout == 'page' or page.layout == 'tags' or page.layout == 'category' %}
+            {% assign hide_panel = true %}
+          {% endif %}
+
+          <main
+            aria-label="Main Content"
+            class="col-12{% unless hide_panel %} col-lg-11 col-xl-9{% endunless %} px-md-4"
+          >
             {% if layout.layout == 'default' %}
               {% include refactor-content.html content=content lang=lang %}
             {% else %}
@@ -32,18 +40,20 @@ layout: compress
             {% endif %}
           </main>
 
-          <!-- panel -->
-          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
-            <div class="access">
-              {% include_cached update-list.html lang=lang %}
-              {% include_cached trending-tags.html lang=lang %}
-            </div>
+          {% unless hide_panel %}
+            <!-- panel -->
+            <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
+              <div class="access">
+                {% include_cached update-list.html lang=lang %}
+                {% include_cached trending-tags.html lang=lang %}
+              </div>
 
-            {% for _include in layout.panel_includes %}
-              {% assign _include_path = _include | append: '.html' %}
-              {% include {{ _include_path }} lang=lang %}
-            {% endfor %}
-          </aside>
+              {% for _include in layout.panel_includes %}
+                {% assign _include_path = _include | append: '.html' %}
+                {% include {{ _include_path }} lang=lang %}
+              {% endfor %}
+            </aside>
+          {% endunless %}
         </div>
 
         <div class="row">
@@ -56,6 +66,15 @@ layout: compress
 
             {% include_cached footer.html lang=lang %}
           </div>
+        </div>
+
+        <!-- 커스텀 검색 결과 영역 -->
+        <div id="search-result-wrapper" style="display:none;">
+          <div id="sr-header">
+            <strong id="sr-keyword"></strong>
+            <span id="sr-count"></span>
+          </div>
+          <div id="search-results"></div>
         </div>
 
         {% include_cached search-results.html lang=lang %}

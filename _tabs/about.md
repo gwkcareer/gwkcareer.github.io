@@ -4,15 +4,19 @@ icon: fas fa-info-circle
 order: 5
 ---
 
-# 안녕하세요, 에비츄우입니다!👋
+# 안녕하세요, 에비츄우입니다! 👋
 
-볼이 미어터지도록 모아둔 해바라기씨처럼, 오늘도 뽈뽈거리며 코드를 줍고 있는 4-5년차 백엔드 개발자 🐹
+볼이 미어터지도록 모아둔 해바라기씨처럼,
+오늘도 뽈뽈거리며 코드를 줍고 있는 4~5년차 백엔드 개발자 🐹
 
 ---
 
 ## 🌻 이 블로그는요
 
 삽질한 것들, 새로 배운 것들, 까먹기 전에 얼른 쌓아두는 공간이에요.  
+Java/Spring 기반 백엔드 개발 기록, 트러블슈팅, 실무에서 만난 문제 해결 과정과 기술 노하우를 차곡차곡 저장합니다.  
+요즘은 AI(Claude, Cursor, MCP…)를 활용한 개발 실험과 생산성 관련 내용도 함께 기록하고 있어요.
+
 완벽한 글보단 **꾸준한 기록**을 목표로 합니다.
 
 ---
@@ -28,9 +32,8 @@ order: 5
 
 ## 🐾 저는요
 
-- 4-5년차 Java/Spring 백엔드 개발자
+- 4~5년차 Java/Spring 백엔드 개발자
 - 항상 어제보다 나은 개발자가 되고 싶음
-- AI 공부 중 (Claude, Cursor, MCP...)
 - 에비츄 🐹
 
 ---
@@ -38,4 +41,4 @@ order: 5
 ## 📬 Contact
 
 - GitHub : [gwkcareer](https://github.com/gwkcareer)
-- Email : gwkcareer@gmail.com
+- Email : [gwkcareer@gmail.com](mailto:gwkcareer@gmail.com)

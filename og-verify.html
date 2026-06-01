@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<!-- Python이 생성할 이미지를 HTML로 정확히 시뮬레이션 (1200×630px) -->
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #888; padding: 40px; font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; }
+.label { color: #fff; font-size: 14px; margin-bottom: 8px; margin-top: 32px; }
+
+/* ── 원본 시안 (600×315, 2배 축소) ── */
+.original {
+  width: 600px; height: 315px; position: relative; overflow: hidden;
+  background: #fdf8f4; border: 1.5px solid #e8d8cc;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 44px 48px;
+}
+.original .bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, #c97c4a, #e8a87c, #f5c8a0);
+}
+.original .chip { color: #c97c4a; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; }
+.original .title { color: #3d2b1f; font-size: 34px; font-weight: 800; line-height: 1.35; margin-top: 14px; }
+.original .footer { display: flex; align-items: center; justify-content: space-between; }
+.original .left   { display: flex; align-items: center; gap: 12px; }
+.original .avatar { width: 38px; height: 38px; border-radius: 50%; background: #f5ede8; border: 2px solid #d9c8b8; overflow: hidden; }
+.original .avatar img { width: 100%; height: 100%; object-fit: cover; }
+.original .name { color: #5a3e30; font-size: 14px; font-weight: 700; }
+.original .url  { color: #c0a898; font-size: 12px; margin-top: 2px; }
+.original .date { color: #c0a898; font-size: 13px; }
+.original .deco {
+  position: absolute; right: -30px; bottom: -30px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,124,74,0.08) 0%, transparent 70%);
+}
+
+/* ── Python 시뮬레이션 (1200×630, 실제 크기) ── */
+.python-sim {
+  width: 1200px; height: 630px; position: relative; overflow: hidden;
+  background: #fdf8f4; border: 3px solid #e8d8cc;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 88px 96px;
+}
+.python-sim .bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 8px;
+  background: linear-gradient(90deg, #c97c4a, #e8a87c, #f5c8a0);
+}
+.python-sim .chip { color: #c97c4a; font-size: 24px; font-weight: 700; letter-spacing: 3px; }
+.python-sim .title { color: #3d2b1f; font-size: 68px; font-weight: 800; line-height: 1.35; margin-top: 28px; }
+.python-sim .footer { display: flex; align-items: center; justify-content: space-between; }
+.python-sim .left   { display: flex; align-items: center; gap: 24px; }
+.python-sim .avatar { width: 76px; height: 76px; border-radius: 50%; background: #f5ede8; border: 4px solid #d9c8b8; overflow: hidden; flex-shrink: 0; }
+.python-sim .avatar img { width: 100%; height: 100%; object-fit: cover; }
+.python-sim .name { color: #5a3e30; font-size: 28px; font-weight: 700; }
+.python-sim .url  { color: #c0a898; font-size: 24px; margin-top: 4px; }
+.python-sim .date { color: #c0a898; font-size: 26px; }
+.python-sim .deco {
+  position: absolute; right: -60px; bottom: -60px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,124,74,0.08) 0%, transparent 70%);
+}
+</style>
+</head>
+<body>
+
+<div class="label">원본 시안 (600×315)</div>
+<div class="original">
+  <div class="bar"></div>
+  <div class="deco"></div>
+  <div>
+    <div class="chip">#블로그</div>
+    <div class="title">블로그 목차</div>
+  </div>
+  <div class="footer">
+    <div class="left">
+      <div class="avatar"><img src="/assets/img/에비츄우.jpg" onerror="this.style.display='none'"></div>
+      <div>
+        <div class="name">기록하자 에비츄우</div>
+        <div class="url">gwkcareer.github.io</div>
+      </div>
+    </div>
+    <div class="date">2026.05.27</div>
+  </div>
+</div>
+
+<div class="label">Python 시뮬레이션 — 실제 생성 크기 (1200×630, 50% 축소)</div>
+<div style="width:600px; height:315px; overflow:hidden;">
+<div class="python-sim" style="transform: scale(0.5); transform-origin: top left;">
+  <div class="bar"></div>
+  <div class="deco"></div>
+  <div>
+    <div class="chip">#블로그</div>
+    <div class="title">블로그 목차</div>
+  </div>
+  <div class="footer">
+    <div class="left">
+      <div class="avatar"><img src="/assets/img/에비츄우.jpg" onerror="this.style.display='none'"></div>
+      <div>
+        <div class="name">기록하자 에비츄우</div>
+        <div class="url">gwkcareer.github.io</div>
+      </div>
+    </div>
+    <div class="date">2026.05.27</div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

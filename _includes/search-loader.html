@@ -1,0 +1,79 @@
+<!--
+  Jekyll Simple Search loader — custom override
+  검색어 헤더 + 카드 리스트 레이아웃
+-->
+
+{% capture result_elem %}
+<a href="{url}" class="sr-item">
+  <div class="sr-item-inner">
+    <div class="sr-item-meta"><i class="far fa-calendar fa-fw"></i> {date}{categories}</div>
+    <h2 class="sr-item-title">{title}</h2>
+    <p class="sr-item-desc">{content}</p>
+  </div>
+</a>
+{% endcapture %}
+
+{% capture not_found %}<p class="sr-no-result">검색 결과가 없습니다.</p>{% endcapture %}
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('search-input');
+  const wrapper = document.getElementById('search-result-wrapper');
+  const keyword = document.getElementById('sr-keyword');
+  const count = document.getElementById('sr-count');
+  const results = document.getElementById('search-results');
+
+  /* 초기화: 검색창 비우기 + 결과 컨테이너 숨김 */
+  if (input) input.value = '';
+  if (wrapper) wrapper.style.display = 'none';
+
+  function updateHeader() {
+    const q = input ? input.value.trim() : '';
+    if (!wrapper) return;
+    if (q.length === 0) {
+      wrapper.style.display = 'none';
+      return;
+    }
+    /* 결과가 실제로 렌더링된 후 카운트 */
+    setTimeout(() => {
+      const n = results ? results.querySelectorAll('.sr-item').length : 0;
+      if (n === 0 && q.length > 0) {
+        /* 결과 없음 텍스트는 보이되 wrapper는 표시 */
+        wrapper.style.display = 'block';
+      } else {
+        wrapper.style.display = n > 0 ? 'block' : 'none';
+      }
+      if (keyword) keyword.textContent = q;
+      if (count) count.textContent = n > 0 ? n + '건' : '';
+    }, 250);
+  }
+
+  if (input) {
+    input.addEventListener('input', updateHeader);
+    input.addEventListener('keyup', updateHeader);
+  }
+
+  SimpleJekyllSearch({
+    searchInput: input,
+    resultsContainer: results,
+    json: '{{ '/assets/js/data/search.json' | relative_url }}',
+    searchResultTemplate: '{{ result_elem | strip_newlines }}',
+    noResultsText: '{{ not_found }}',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (!value) return '';
+        var badges = value.split(',').map(function(c, i) {
+          return '<span class="cat-badge cat-badge-' + ((i % 5) + 1) + '">' + c.trim() + '</span>';
+        }).join('');
+        return '<span class="cat-badges ms-1">' + badges + '</span>';
+      }
+      if (prop === 'tags') return '';
+      if (prop === 'img') return '';
+      if (prop === 'date') {
+        if (!value) return '';
+        return value.substring(0, 10).replace(/-/g, '/');
+      }
+    }
+  });
+});
+</script>

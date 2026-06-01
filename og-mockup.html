@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; }
+
+  /* 블로그 실제 배경색 */
+  .bg-light { background: #f5ede8; padding: 48px; display: flex; flex-direction: column; gap: 32px; }
+  .bg-dark  { background: #2b2318; padding: 48px; display: flex; flex-direction: column; gap: 32px; }
+
+  .label { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+  .bg-light .label { color: #b89a86; }
+  .bg-dark  .label { color: #6b5a4e; }
+
+  .og { width: 600px; height: 315px; position: relative; overflow: hidden; border-radius: 12px; }
+
+  /* ── 시안 1: 크림 + 브라운 ── */
+  /* 블로그 밝은 배경 그대로, 진한 브라운 텍스트 */
+  .s1 {
+    background: #fdf8f4;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 44px 48px;
+    border: 1.5px solid #e8d8cc;
+  }
+  .s1 .accent-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #c97c4a, #e8a87c, #f5c8a0);
+  }
+  .s1 .chip {
+    display: inline-flex; gap: 8px;
+    color: #c97c4a; font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+    width: fit-content;
+  }
+  .s1 .title { color: #3d2b1f; font-size: 34px; font-weight: 800; line-height: 1.35; margin-top: 14px; }
+  .s1 .footer { display: flex; align-items: center; justify-content: space-between; }
+  .s1 .left  { display: flex; align-items: center; gap: 12px; }
+  .s1 .avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #f5ede8; border: 2px solid #d9c8b8;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .s1 .name { color: #5a3e30; font-size: 14px; font-weight: 700; }
+  .s1 .url  { color: #c0a898; font-size: 12px; margin-top: 2px; }
+  .s1 .date { color: #c0a898; font-size: 13px; }
+  .s1 .deco {
+    position: absolute; right: -30px; bottom: -30px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,124,74,0.08) 0%, transparent 70%);
+  }
+
+  /* ── 시안 2: 다크 브라운 ── */
+  /* 블로그 다크모드 배경 (#2b2318 계열) 그대로 */
+  .s2 {
+    background: #241c12;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 44px 48px;
+  }
+  .s2 .chip {
+    display: inline-flex;
+    background: rgba(201,124,74,0.15); border: 1px solid rgba(201,124,74,0.3);
+    border-radius: 20px; padding: 5px 14px;
+    color: #e8a87c; font-size: 12px; font-weight: 600; letter-spacing: 1px;
+    width: fit-content;
+  }
+  .s2 .title { color: #f5ede8; font-size: 34px; font-weight: 800; line-height: 1.35; margin-top: 20px; }
+  .s2 .footer { display: flex; align-items: center; justify-content: space-between; }
+  .s2 .left  { display: flex; align-items: center; gap: 12px; }
+  .s2 .avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #3d2e20; border: 2px solid rgba(201,124,74,0.4);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .s2 .name { color: #e8d8cc; font-size: 14px; font-weight: 600; }
+  .s2 .url  { color: #6b5040; font-size: 12px; margin-top: 2px; }
+  .s2 .date {
+    color: #6b5040; font-size: 13px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px; padding: 6px 14px;
+  }
+  .s2 .glow {
+    position: absolute; top: -50px; right: -50px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,124,74,0.12) 0%, transparent 70%);
+  }
+
+  /* ── 시안 3: 하프톤 샌드 ── */
+  /* 중간톤 — 다크/라이트 모두 잘 어울림 */
+  .s3 {
+    background: linear-gradient(135deg, #3d2e20 0%, #5a3e2a 50%, #3d2e20 100%);
+    display: flex; overflow: hidden;
+  }
+  .s3 .bar {
+    width: 6px; flex-shrink: 0;
+    background: linear-gradient(180deg, #f5c8a0, #c97c4a);
+  }
+  .s3 .inner {
+    flex: 1; padding: 44px 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .s3 .tag { color: #e8a87c; font-size: 12px; font-weight: 700; letter-spacing: 2px; }
+  .s3 .title { color: #fdf8f4; font-size: 34px; font-weight: 800; line-height: 1.35; margin-top: 12px; }
+  .s3 .footer { display: flex; align-items: center; justify-content: space-between; }
+  .s3 .left  { display: flex; align-items: center; gap: 12px; }
+  .s3 .avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #2b1f14; border: 2px solid #c97c4a;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .s3 .name { color: #e8d8cc; font-size: 14px; font-weight: 600; }
+  .s3 .url  { color: #8b6a54; font-size: 12px; margin-top: 2px; }
+  .s3 .badge {
+    background: rgba(201,124,74,0.15); border: 1px solid rgba(201,124,74,0.3);
+    border-radius: 8px; padding: 6px 16px;
+    color: #e8a87c; font-size: 12px; font-weight: 600;
+  }
+  .s3 .pattern {
+    position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 10px; opacity: 0.15;
+  }
+  .s3 .pattern-row { display: flex; gap: 10px; }
+  .s3 .dot { width: 5px; height: 5px; border-radius: 50%; background: #f5c8a0; }
+</style>
+</head>
+<body>
+
+<!-- 라이트 배경 (블로그 실제 배경 #f5ede8) -->
+<div class="bg-light">
+  <div class="label">☀️ 라이트 배경 (#f5ede8 — 블로그 실제 배경색)</div>
+
+  <div>
+    <div class="label">시안 1 — 크림 카드 + 브라운 포인트</div>
+    <div class="og s1">
+      <div class="accent-line"></div>
+      <div class="deco"></div>
+      <div class="chip">#SPRING · #BACKEND</div>
+      <div class="title">Spring Security 6<br>OAuth2 완벽 정복</div>
+      <div class="footer">
+        <div class="left">
+          <div class="avatar">🐹</div>
+          <div><div class="name">기록하자 에비츄우</div><div class="url">gwkcareer.github.io</div></div>
+        </div>
+        <div class="date">2026.05.27</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="label">시안 2 — 다크 브라운 카드</div>
+    <div class="og s2">
+      <div class="glow"></div>
+      <div class="chip">#Spring · #Backend</div>
+      <div class="title">Spring Security 6<br>OAuth2 완벽 정복</div>
+      <div class="footer">
+        <div class="left">
+          <div class="avatar">🐹</div>
+          <div><div class="name">기록하자 에비츄우</div><div class="url">gwkcareer.github.io</div></div>
+        </div>
+        <div class="date">2026.05.27</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="label">시안 3 — 미드 브라운 그라디언트 + 포인트 바</div>
+    <div class="og s3" style="position:relative;">
+      <div class="bar"></div>
+      <div class="inner">
+        <div><div class="tag">#SPRING · #BACKEND</div><div class="title">Spring Security 6<br>OAuth2 완벽 정복</div></div>
+        <div class="footer">
+          <div class="left">
+            <div class="avatar">🐹</div>
+            <div><div class="name">기록하자 에비츄우</div><div class="url">gwkcareer.github.io</div></div>
+          </div>
+          <div class="badge">2026.05.27</div>
+        </div>
+      </div>
+      <div class="pattern">
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 다크 배경 -->
+<div class="bg-dark">
+  <div class="label">🌙 다크 배경에서 보이는 모습</div>
+
+  <div>
+    <div class="label">시안 1</div>
+    <div class="og s1">
+      <div class="accent-line"></div>
+      <div class="deco"></div>
+      <div class="chip">#SPRING · #BACKEND</div>
+      <div class="title">Spring Security 6<br>OAuth2 완벽 정복</div>
+      <div class="footer">
+        <div class="left">
+          <div class="avatar">🐹</div>
+          <div><div class="name">기록하자 에비츄우</div><div class="url">gwkcareer.github.io</div></div>
+        </div>
+        <div class="date">2026.05.27</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="label">시안 2</div>
+    <div class="og s2">
+      <div class="glow"></div>
+      <div class="chip">#Spring · #Backend</div>
+      <div class="title">Spring Security 6<br>OAuth2 완벽 정복</div>
+      <div class="footer">
+        <div class="left">
+          <div class="avatar">🐹</div>
+          <div><div class="name">기록하자 에비츄우</div><div class="url">gwkcareer.github.io</div></div>
+        </div>
+        <div class="date">2026.05.27</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="label">시안 3</div>
+    <div class="og s3" style="position:relative;">
+      <div class="bar"></div>
+      <div class="inner">
+        <div><div class="tag">#SPRING · #BACKEND</div><div class="title">Spring Security 6<br>OAuth2 완벽 정복</div></div>
+        <div class="footer">
+          <div class="left">
+            <div class="avatar">🐹</div>
+            <div><div class="name">기록하자 에비츄우</div><div class="url">gwkcareer.github.io</div></div>
+          </div>
+          <div class="badge">2026.05.27</div>
+        </div>
+      </div>
+      <div class="pattern">
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="pattern-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
