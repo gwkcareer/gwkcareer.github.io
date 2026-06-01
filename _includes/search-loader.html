@@ -1,15 +1,17 @@
 <!--
   Jekyll Simple Search loader — custom override
-  검색어 헤더 + 카드 리스트 레이아웃
+  미니멀 리스트 레이아웃 (시안 C)
 -->
 
 {% capture result_elem %}
 <a href="{url}" class="sr-item">
-  <div class="sr-item-inner">
+  <div class="sr-accent"></div>
+  <div class="sr-content">
     <div class="sr-item-meta"><i class="far fa-calendar fa-fw"></i> {date}{categories}</div>
     <h2 class="sr-item-title">{title}</h2>
     <p class="sr-item-desc">{content}</p>
   </div>
+  {thumbnail}
 </a>
 {% endcapture %}
 
@@ -23,26 +25,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const count = document.getElementById('sr-count');
   const results = document.getElementById('search-results');
 
-  /* 초기화: 검색창 비우기 + 결과 컨테이너 숨김 */
   if (input) input.value = '';
   if (wrapper) wrapper.style.display = 'none';
 
   function updateHeader() {
     const q = input ? input.value.trim() : '';
     if (!wrapper) return;
-    if (q.length === 0) {
-      wrapper.style.display = 'none';
-      return;
-    }
-    /* 결과가 실제로 렌더링된 후 카운트 */
+    if (q.length === 0) { wrapper.style.display = 'none'; return; }
     setTimeout(() => {
       const n = results ? results.querySelectorAll('.sr-item').length : 0;
-      if (n === 0 && q.length > 0) {
-        /* 결과 없음 텍스트는 보이되 wrapper는 표시 */
-        wrapper.style.display = 'block';
-      } else {
-        wrapper.style.display = n > 0 ? 'block' : 'none';
-      }
+      wrapper.style.display = (n > 0 || q.length > 0) ? 'block' : 'none';
       if (keyword) keyword.textContent = q;
       if (count) count.textContent = n > 0 ? n + '건' : '';
     }, 250);
@@ -68,7 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return '<span class="cat-badges ms-1">' + badges + '</span>';
       }
       if (prop === 'tags') return '';
-      if (prop === 'img') return '';
+      if (prop === 'thumbnail') {
+        if (!value) return '<div class="sr-thumb-placeholder">📝</div>';
+        return '<img class="sr-thumb" src="' + value + '" alt="">';
+      }
       if (prop === 'date') {
         if (!value) return '';
         return value.substring(0, 10).replace(/-/g, '/');

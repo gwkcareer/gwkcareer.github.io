@@ -3,17 +3,28 @@ layout: page
 ---
 {% include lang.html %}
 <div id="page-category">
-  <h1 class="ps-lg-2">
-    📂 {{ page.title }}
-    <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
-  </h1>
-  <div class="sr-list">
+  <div class="cat-page-header">
+    <h1>📂 {{ page.title }}</h1>
+    <span class="cat-page-count">{{ page.posts | size }} posts</span>
+  </div>
+  <div class="cat-card-list">
     {% for post in page.posts %}
-      <a href="{{ post.url | relative_url }}" class="sr-item">
-        <div class="sr-item-inner">
-          <div class="sr-item-meta">
-            <i class="far fa-calendar fa-fw"></i>
-            {% include datetime.html date=post.date lang=lang %}
+      <a href="{{ post.url | relative_url }}" class="cat-card">
+        {% if post.thumbnail %}
+          <img class="cat-card-thumb" src="{{ post.thumbnail | relative_url }}" alt="">
+        {% else %}
+          <div class="cat-card-thumb-placeholder">
+            {% assign cat = post.categories[1] | default: post.categories[0] %}
+            {% assign ci = forloop.index | modulo: 5 %}
+            <span class="cat-card-thumb-icon">📝</span>
+          </div>
+        {% endif %}
+        <div class="cat-card-body">
+          <div class="cat-card-meta">
+            <span class="cat-card-date">
+              <i class="far fa-calendar fa-fw"></i>
+              {% include datetime.html date=post.date lang=lang %}
+            </span>
             {% if post.categories.size > 0 %}
               <span class="cat-badges">
                 {% for category in post.categories %}
@@ -22,8 +33,8 @@ layout: page
               </span>
             {% endif %}
           </div>
-          <h2 class="sr-item-title">{{ post.title }}</h2>
-          <p class="sr-item-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 120 }}</p>
+          <h2 class="cat-card-title">{{ post.title }}</h2>
+          <p class="cat-card-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 100 }}</p>
         </div>
       </a>
     {% endfor %}

@@ -11,7 +11,8 @@ swcache: true
     "tags": {{ post.tags | join: ', ' | jsonify }},
     "date": {{ post.date | jsonify }},
     {% capture content -%}{% include post-summary.html %}{%- endcapture -%}
-    "content": {{ content | jsonify }}
+    "content": {{ content | jsonify }},
+    "thumbnail": {{ post.thumbnail | default: "" | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]
