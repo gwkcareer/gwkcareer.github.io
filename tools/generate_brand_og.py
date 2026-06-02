@@ -18,9 +18,13 @@ TITLE_C = (61,  43,  31)
 ROLE_C  = (201, 124,  74)
 
 FONT_CANDIDATES = [
-    'C:/Windows/Fonts/malgunbd.ttf',   # 맑은 고딕 Bold
-    'C:/Windows/Fonts/malgun.ttf',     # 맑은 고딕
+    'C:/Windows/Fonts/malgunbd.ttf',
+    'C:/Windows/Fonts/malgun.ttf',
     'C:/Windows/Fonts/gulim.ttc',
+    '/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf',
+    '/usr/share/fonts/truetype/nanum/NanumGothic.ttf',
+    '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc',
+    '/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc',
 ]
 
 def find_font():

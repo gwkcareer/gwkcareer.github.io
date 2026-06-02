@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
+    inputs:
+      full_sync:
+        description: '전체 재동기화 (last_sync 초기화)'
+        type: boolean
+        default: false
 
 jobs:
   sync:
@@ -22,11 +27,19 @@ jobs:
       - name: Install dependencies
         run: cd notion-sync && npm install
 
+      - name: Reset last_sync if full sync
+        if: ${{ inputs.full_sync == true }}
+        run: echo '{"last_sync":null}' > notion-sync/last_sync.json
+
       - name: Run sync
+        id: sync
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-        run: node notion-sync/sync.js
+        run: |
+          node notion-sync/sync.js 2>&1 | tee /tmp/sync_out.txt
+          msg=$(grep "SYNC_RESULT=" /tmp/sync_out.txt | sed 's/SYNC_RESULT=//' || echo "변경 없음")
+          echo "commit_msg=${msg}" >> $GITHUB_OUTPUT
 
       - name: Commit and push if changed
         run: |
@@ -36,6 +49,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "변경사항 없음, push 생략"
           else
-            git commit -m "chore: Notion 자동 동기화 $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "chore: [Notion] ${{ steps.sync.outputs.commit_msg }}"
             git push
           fi

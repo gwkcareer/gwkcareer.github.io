@@ -222,4 +222,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-  slug_mode: raw

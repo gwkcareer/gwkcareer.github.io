@@ -8,7 +8,9 @@ import http from "http";
 
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
-const ROOT_DIR = path.resolve(import.meta.dirname, "..");
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT_DIR = path.resolve(__dirname, "..");
 const POSTS_DIR = path.join(ROOT_DIR, "_posts");
 const IMAGES_DIR = path.join(ROOT_DIR, "assets/images");
 const LAST_SYNC_FILE = path.join(ROOT_DIR, "notion-sync/last_sync.json");
@@ -27,6 +29,10 @@ function loadLastSync() {
 
 function saveLastSync(time) {
   fs.writeFileSync(LAST_SYNC_FILE, JSON.stringify({ last_sync: time }, null, 2));
+}
+
+function sanitizeCategory(name) {
+  return name.replace(/\(.*?\)/g, "").trim();
 }
 
 function slugify(text) {
@@ -147,7 +153,7 @@ async function syncPages() {
     queryParams.filter = {
       and: [
         queryParams.filter,
-        { timestamp: "last_edited_time", last_edited_time: { after: lastSync } },
+        { timestamp: "last_edited_time", last_edited_time: { on_or_after: lastSync } },
       ],
     };
   }
@@ -157,12 +163,14 @@ async function syncPages() {
 
   if (pages.length === 0) {
     console.log("변경된 페이지 없음");
+    console.log("SYNC_RESULT=post 등록 0건 / 업데이트 0건");
     saveLastSync(nowTime);
     return 0;
   }
 
   console.log(`${pages.length}개 페이지 처리 중...`);
-  let count = 0;
+  let newCount = 0;
+  let updateCount = 0;
 
   for (const page of pages) {
     try {
@@ -182,7 +190,7 @@ async function syncPages() {
       const filename = `${dateForFile}-${slug}.md`;
       const filepath = path.join(POSTS_DIR, filename);
 
-      const categories = [upperCat, lowerCat].filter(Boolean);
+      const categories = [upperCat, lowerCat].filter(Boolean).map(sanitizeCategory);
       const categoriesStr = categories.map((c) => `"${c}"`).join(", ");
       const tagsStr = tags.map((t) => `"${t}"`).join(", ");
       const thumbnailLine = thumbnail ? `\nthumbnail: ${thumbnail}` : "";
@@ -200,17 +208,19 @@ tags: [${tagsStr}]
 
 ${mdContent}`;
 
+      const isNew = !fs.existsSync(filepath);
       fs.writeFileSync(filepath, frontmatter, "utf8");
       console.log(`✅ ${filename}`);
-      count++;
+      if (isNew) newCount++; else updateCount++;
     } catch (err) {
       console.error(`❌ 페이지 처리 실패 (${page.id}):`, err.message);
     }
   }
 
   saveLastSync(nowTime);
-  console.log(`완료: ${count}개 파일 생성/갱신`);
-  return count;
+  console.log(`완료: 신규 ${newCount}건 / 업데이트 ${updateCount}건`);
+  console.log(`SYNC_RESULT=post 등록 ${newCount}건 / 업데이트 ${updateCount}건`);
+  return newCount + updateCount;
 }
 
 syncPages().catch((err) => {
