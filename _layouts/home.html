@@ -90,15 +90,14 @@ layout: default
       {% endcase %}
       <a href="{{ post.url | relative_url }}" class="hh-card">
         <div class="hh-card-thumb" style="background:{{ bg }}">
-          {% if post.thumbnail %}
+          {% assign thumb = post.image.path | default: post.image %}
+          {% if thumb %}
             <img
-              src="{{ post.thumbnail | relative_url }}"
+              src="{{ thumb | relative_url }}"
               alt="{{ post.title }}"
               class="hh-card-og"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
               loading="lazy"
             >
-            <span class="hh-card-emoji" style="display:none">{{ emoji }}</span>
           {% else %}
             <span class="hh-card-emoji">{{ emoji }}</span>
           {% endif %}

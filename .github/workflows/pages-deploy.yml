@@ -55,6 +55,9 @@ jobs:
           rm -rf assets/img/og/
           bundle exec ruby tools/generate_og_images.rb
 
+      - name: Generate brand OG image
+        run: python tools/generate_brand_og.py
+
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
