@@ -24,25 +24,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const keyword = document.getElementById('sr-keyword');
   const count = document.getElementById('sr-count');
   const results = document.getElementById('custom-search-results');
+  const mainRows = document.getElementById('main-content-rows');
 
   if (input) input.value = '';
   if (wrapper) wrapper.style.display = 'none';
 
-  function updateHeader() {
-    const q = input ? input.value.trim() : '';
-    if (!wrapper) return;
-    if (q.length === 0) { wrapper.style.display = 'none'; return; }
-    setTimeout(() => {
+  function showSearch(q) {
+    if (wrapper) wrapper.style.display = 'block';
+    if (mainRows) mainRows.style.display = 'none';
+    if (keyword) keyword.textContent = q;
+  }
+
+  function hideSearch() {
+    if (wrapper) wrapper.style.display = 'none';
+    if (mainRows) mainRows.style.display = '';
+    if (keyword) keyword.textContent = '';
+    if (count) count.textContent = '';
+  }
+
+  // MutationObserver로 결과 렌더링 완료 후 카운트 업데이트
+  let observer = null;
+  function observeResults() {
+    if (observer) observer.disconnect();
+    observer = new MutationObserver(() => {
       const n = results ? results.querySelectorAll('.sr-item').length : 0;
-      wrapper.style.display = (n > 0 || q.length > 0) ? 'block' : 'none';
-      if (keyword) keyword.textContent = q;
       if (count) count.textContent = n > 0 ? n + '건' : '';
-    }, 250);
+    });
+    if (results) {
+      observer.observe(results, { childList: true, subtree: true });
+    }
+  }
+
+  function handleInput() {
+    const q = input ? input.value.trim() : '';
+    if (q.length === 0) {
+      hideSearch();
+    } else {
+      showSearch(q);
+      observeResults();
+    }
   }
 
   if (input) {
-    input.addEventListener('input', updateHeader);
-    input.addEventListener('keyup', updateHeader);
+    input.addEventListener('input', handleInput);
+    input.addEventListener('keyup', handleInput);
   }
 
   SimpleJekyllSearch({

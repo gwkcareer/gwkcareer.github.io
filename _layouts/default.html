@@ -23,6 +23,7 @@ layout: compress
       <div class="container d-flex flex-column px-xxl-5">
         {% include topbar.html lang=lang %}
 
+        <div id="main-content-rows">
         <div class="row flex-grow-1">
           {% assign hide_panel = false %}
           {% if page.layout == 'home' or page.layout == 'post' or page.layout == 'page' or page.layout == 'tags' or page.layout == 'category' %}
@@ -67,6 +68,7 @@ layout: compress
             {% include_cached footer.html lang=lang %}
           </div>
         </div>
+        </div><!-- /#main-content-rows -->
 
         <!-- 커스텀 검색 결과 영역 -->
         <div id="custom-search-wrapper" style="display:none;">

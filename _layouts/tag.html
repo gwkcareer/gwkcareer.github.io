@@ -38,30 +38,14 @@ layout: page
     {% endif %}
   </div>
 
-  <!-- 포스트 리스트 -->
-  <div class="sr-list">
+  <!-- 포스트 카드 그리드 -->
+  <div class="cat-card-grid">
     {% for post in page.posts %}
-      {% assign post_slug = post.title | slugify %}
-      {% assign og_path = '/assets/img/og/' | append: post_slug | append: '.png' %}
-      <a href="{{ post.url | relative_url }}" class="sr-item sr-item-thumb">
-        <div class="sr-content">
-          <div class="sr-item-meta">
-            <i class="far fa-calendar fa-fw"></i>
-            {% include datetime.html date=post.date lang=lang %}
-            {% if post.categories.size > 0 %}
-              {% for category in post.categories %}
-                <span class="cat-badge cat-badge-{{ forloop.index }}">{{ category }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-          <h2 class="sr-item-title">{{ post.title }}</h2>
-          <p class="sr-item-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 120 }}</p>
-        </div>
-        <div class="sr-thumb-right">
-          {% if post.thumbnail %}
-            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" loading="lazy"
-              onerror="this.parentElement.classList.add('sr-thumb-fallback');this.remove()">
-          {% else %}
+      <a href="{{ post.url | relative_url }}" class="cat-card">
+        {% if post.thumbnail %}
+          <img class="cat-card-thumb" src="{{ post.thumbnail | relative_url }}" alt="">
+        {% else %}
+          <div class="cat-card-thumb-placeholder">
             {% assign fallback_emoji = '📝' %}
             {% for cat in post.categories %}
               {% case cat %}
@@ -72,8 +56,25 @@ layout: page
                 {% when 'ETC' %}{% assign fallback_emoji = '📋' %}
               {% endcase %}
             {% endfor %}
-            <span class="sr-thumb-emoji">{{ fallback_emoji }}</span>
-          {% endif %}
+            <span class="cat-card-thumb-icon">{{ fallback_emoji }}</span>
+          </div>
+        {% endif %}
+        <div class="cat-card-body">
+          <div class="cat-card-meta">
+            <span class="cat-card-date">
+              <i class="far fa-calendar fa-fw"></i>
+              {% include datetime.html date=post.date lang=lang %}
+            </span>
+            {% if post.categories.size > 0 %}
+              <span class="cat-badges">
+                {% for category in post.categories %}
+                  <span class="cat-badge cat-badge-{{ forloop.index }}">{{ category }}</span>
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+          <h2 class="cat-card-title">{{ post.title }}</h2>
+          <p class="cat-card-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 100 }}</p>
         </div>
       </a>
     {% endfor %}

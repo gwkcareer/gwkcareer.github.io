@@ -1,0 +1,59 @@
+---
+layout: page
+---
+{% include lang.html %}
+
+{% comment %} 최상위 카테고리 수집 {% endcomment %}
+{% assign top_cats = "" | split: "" %}
+{% for post in site.posts %}
+  {% assign top = post.categories[0] %}
+  {% unless top_cats contains top %}
+    {% assign top_cats = top_cats | push: top %}
+  {% endunless %}
+{% endfor %}
+{% assign top_cats = top_cats | sort_natural %}
+
+{% assign cat_emojis = "AI:🤖,Backend:⚙️,Database:🗄️,Security:🔐,ETC:📋,Frontend:🎨,DevOps:🚀,Network:🌐,Algorithm:🧮,CS:📚" | split: "," %}
+
+<div id="page-categories-main">
+  <div class="cat-tile-grid">
+    {% for top in top_cats %}
+      {% comment %} 이 최상위 카테고리의 포스트 수집 {% endcomment %}
+      {% assign cat_posts = site.posts | where_exp: "p", "p.categories[0] == top" %}
+      {% assign post_count = cat_posts | size %}
+
+      {% comment %} 서브카테고리 수집 {% endcomment %}
+      {% assign sub_cats = "" | split: "" %}
+      {% for post in cat_posts %}
+        {% assign sub = post.categories[1] %}
+        {% if sub and sub != "" %}
+          {% unless sub_cats contains sub %}
+            {% assign sub_cats = sub_cats | push: sub %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+
+      {% comment %} 이모지 매핑 {% endcomment %}
+      {% assign tile_emoji = "📁" %}
+      {% for mapping in cat_emojis %}
+        {% assign pair = mapping | split: ":" %}
+        {% if pair[0] == top %}
+          {% assign tile_emoji = pair[1] %}
+        {% endif %}
+      {% endfor %}
+
+      <a href="{{ top | slugify | prepend: '/categories/' | append: '/' | relative_url }}" class="cat-tile">
+        <div class="cat-tile-emoji">{{ tile_emoji }}</div>
+        <div class="cat-tile-name">{{ top }}</div>
+        <div class="cat-tile-count">{{ post_count }} post{% if post_count != 1 %}s{% endif %}</div>
+        {% if sub_cats.size > 0 %}
+          <div class="cat-tile-subs">
+            {% for sub in sub_cats limit: 4 %}
+              <span class="cat-tile-sub">{{ sub }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+</div>
