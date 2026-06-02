@@ -13,11 +13,6 @@ layout: page
 {% endfor %}
 
 <div id="tags-page">
-  <div class="tags-header">
-    <h2 class="tags-title">태그</h2>
-    <span class="tags-stat">{{ all_tags.size }}개 · {{ total_posts }}편</span>
-  </div>
-
   <div class="tag-cloud">
     {% for t in sorted_tags %}
       {% assign cnt = site.tags[t].size %}

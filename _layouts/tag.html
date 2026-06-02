@@ -2,29 +2,78 @@
 layout: page
 ---
 {% include lang.html %}
+
+{% comment %} 관련 태그 수집 {% endcomment %}
+{% assign related_tags = "" | split: "" %}
+{% for post in page.posts %}
+  {% for tag in post.tags %}
+    {% unless related_tags contains tag %}
+      {% assign related_tags = related_tags | push: tag %}
+    {% endunless %}
+  {% endfor %}
+{% endfor %}
+
 <div id="page-tag">
-  <h1 class="ps-lg-2">
-    <i class="fa fa-tag fa-fw text-muted"></i>
-    {{ page.title }}
-    <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
-  </h1>
+  <!-- 배너 헤더 -->
+  <div class="tag-banner">
+    <div class="tag-banner-top">
+      <div class="tag-banner-icon"><i class="fa fa-tag"></i></div>
+      <div>
+        <div class="tag-banner-name">{{ page.title }}</div>
+        <div class="tag-banner-count">포스트 {{ page.posts | size }}개</div>
+      </div>
+    </div>
+    {% if related_tags.size > 1 %}
+      <div class="related-tags-label">관련 태그</div>
+      <div class="related-tags">
+        {% for tag in related_tags limit: 8 %}
+          {% assign tag_slug = tag | slugify %}
+          {% if tag == page.title %}
+            <a href="/tags/{{ tag_slug }}/" class="related-tag active"># {{ tag }}</a>
+          {% else %}
+            <a href="/tags/{{ tag_slug }}/" class="related-tag"># {{ tag }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- 포스트 리스트 -->
   <div class="sr-list">
     {% for post in page.posts %}
-      <a href="{{ post.url | relative_url }}" class="sr-item">
-        <div class="sr-item-inner">
+      {% assign post_slug = post.title | slugify %}
+      {% assign og_path = '/assets/img/og/' | append: post_slug | append: '.png' %}
+      <a href="{{ post.url | relative_url }}" class="sr-item sr-item-thumb">
+        <div class="sr-content">
           <div class="sr-item-meta">
             <i class="far fa-calendar fa-fw"></i>
             {% include datetime.html date=post.date lang=lang %}
             {% if post.categories.size > 0 %}
-              <span class="cat-badges">
-                {% for category in post.categories %}
-                  <span class="cat-badge cat-badge-{{ forloop.index }}">{{ category }}</span>
-                {% endfor %}
-              </span>
+              {% for category in post.categories %}
+                <span class="cat-badge cat-badge-{{ forloop.index }}">{{ category }}</span>
+              {% endfor %}
             {% endif %}
           </div>
           <h2 class="sr-item-title">{{ post.title }}</h2>
           <p class="sr-item-desc">{{ post.description | default: post.excerpt | strip_html | truncate: 120 }}</p>
+        </div>
+        <div class="sr-thumb-right">
+          {% if post.thumbnail %}
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" loading="lazy"
+              onerror="this.parentElement.classList.add('sr-thumb-fallback');this.remove()">
+          {% else %}
+            {% assign fallback_emoji = '📝' %}
+            {% for cat in post.categories %}
+              {% case cat %}
+                {% when 'AI' %}{% assign fallback_emoji = '🤖' %}
+                {% when 'Backend' %}{% assign fallback_emoji = '⚙️' %}
+                {% when 'Database' %}{% assign fallback_emoji = '🗄️' %}
+                {% when 'Security' %}{% assign fallback_emoji = '🔐' %}
+                {% when 'ETC' %}{% assign fallback_emoji = '📋' %}
+              {% endcase %}
+            {% endfor %}
+            <span class="sr-thumb-emoji">{{ fallback_emoji }}</span>
+          {% endif %}
         </div>
       </a>
     {% endfor %}
