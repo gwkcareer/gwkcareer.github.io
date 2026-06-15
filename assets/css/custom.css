@@ -1879,3 +1879,107 @@ footer p:last-child {
 [data-mode='dark'] .cat-tile-name { color: #f0d9c0; }
 [data-mode='dark'] .cat-tile-count { color: #8a6848; }
 [data-mode='dark'] .cat-tile-sub { background: #3a2a1e; color: #e8a878; }
+
+/* ──────────────────────────────────────────────
+   본문 헤딩 위계 정리 (h1/h2/h3 구분 강화)
+   ────────────────────────────────────────────── */
+.content h1 {
+  font-size: 1.9rem !important;
+  font-weight: 800 !important;
+  color: #5a3e2b !important;
+  margin-top: 3.2rem !important;
+  margin-bottom: 1.1rem !important;
+  padding-bottom: 0.35rem !important;
+  border-bottom: 2px solid #c9845a !important;
+}
+
+.content h2 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #5a3e2b !important;
+  margin-top: 2.8rem !important;
+  margin-bottom: 0.8rem !important;
+  padding-bottom: 0.3rem !important;
+  border-bottom: 1.5px solid #e8d8cc !important;
+}
+
+.content h3 {
+  font-size: 1.18rem !important;
+  font-weight: 700 !important;
+  color: #b56a3a !important;
+  margin-top: 2rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-left: 0.6rem !important;
+  border-left: 4px solid #c9845a !important;
+  line-height: 1.35 !important;
+}
+
+.content h4 {
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  color: #a0846a !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+/* 다크 모드 */
+[data-mode='dark'] .content h1 { color: #f0d9c0 !important; border-bottom-color: #c9845a !important; }
+[data-mode='dark'] .content h2 { color: #f0d9c0 !important; border-bottom-color: #3d2e24 !important; }
+[data-mode='dark'] .content h3 { color: #e8a878 !important; border-left-color: #c9845a !important; }
+[data-mode='dark'] .content h4 { color: #c9a882 !important; }
+
+/* ──────────────────────────────────────────────
+   포스트 상단 커버 이미지 — 본문 칼럼 안으로 폭 제한
+   (사이드바 침범 방지. 실제 이미지/OG 커버 모두 정상 표시)
+   ────────────────────────────────────────────── */
+article .preview-img,
+.preview-img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* 로드에 실패한 커버만 숨김 (JS가 .img-broken 부여) */
+.preview-img.img-broken {
+  display: none !important;
+}
+
+/* ──────────────────────────────────────────────
+   TOC(목차) 활성 항목 색상 — 블로그 테마(브라운/테라코타)
+   ────────────────────────────────────────────── */
+:root,
+html[data-mode='light'] {
+  --toc-highlight: #c9845a !important;
+}
+
+#toc .is-active-link,
+#toc-wrapper .is-active-link,
+.toc .toc-link.is-active-link,
+.toc-link.is-active-link {
+  color: #b56a3a !important;
+  font-weight: 700 !important;
+}
+
+#toc .is-active-link::before,
+.toc .toc-link.is-active-link::before,
+.toc-link.is-active-link::before,
+.is-active-li::before {
+  background-color: #c9845a !important;
+}
+
+/* 다크 모드 */
+[data-mode='dark'] {
+  --toc-highlight: #e8a878 !important;
+}
+[data-mode='dark'] #toc .is-active-link,
+[data-mode='dark'] .toc-link.is-active-link {
+  color: #e8a878 !important;
+}
+[data-mode='dark'] #toc .is-active-link::before,
+[data-mode='dark'] .toc-link.is-active-link::before,
+[data-mode='dark'] .is-active-li::before {
+  background-color: #c9845a !important;
+}
