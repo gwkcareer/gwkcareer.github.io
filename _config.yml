@@ -153,6 +153,7 @@ baseurl: ""
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
+  hard_wrap: true # 본문 내 단순 줄바꿈(Notion 줄바꿈)을 <br>로 그대로 반영
   footnote_backlink: "&#8617;&#xfe0e;"
   syntax_highlighter: rouge
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
