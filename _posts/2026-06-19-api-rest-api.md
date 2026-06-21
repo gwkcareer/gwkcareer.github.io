@@ -8,7 +8,7 @@ tags: ["api", "rest"]
 ---
 
 
-API 랑 REST API 에 개념을 한번 짚고 가자!
+API 랑 REST API 에 개념을 한번 짚고 가자!!!
 
 
 ## **1. API?**
