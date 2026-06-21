@@ -43,8 +43,8 @@ jobs:
 
       - name: Commit and push if changed
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "gwkcareer"
+          git config user.email "gwkcareer@gmail.com"
           git add _posts/ assets/images/ notion-sync/last_sync.json
           if git diff --staged --quiet; then
             echo "변경사항 없음, push 생략"
