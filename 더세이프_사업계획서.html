@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>더 세이프(The Safe · 가칭) — 사업계획서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F4;
+    --paper-2:#F3EFE8;
+    --ink:#1B2A4A;
+    --ink-soft:#4A5670;
+    --fact:#2E6E5B;
+    --contest:#B8822A;
+    --myth:#AC4230;
+    --line:#E4DED2;
+    --line-2:#D6CEBF;
+    --serif:'Nanum Myeongjo',serif;
+    --sans:'Pretendard',-apple-system,sans-serif;
+    --mono:'Spline Sans Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px}
+
+  /* ---- eyebrow / labels ---- */
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ---- HERO ---- */
+  .hero{padding:88px 0 56px;border-bottom:1px solid var(--line)}
+  .hero .kicker{margin-bottom:26px}
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:800;
+    font-size:clamp(40px,7vw,76px);
+    line-height:1.04;
+    letter-spacing:-.01em;
+    margin-bottom:8px;
+  }
+  .hero h1 .en{
+    display:block;
+    font-size:clamp(15px,2vw,20px);
+    font-family:var(--mono);
+    font-weight:400;
+    letter-spacing:.3em;
+    color:var(--ink-soft);
+    margin-top:14px;
+  }
+  .thesis{
+    font-family:var(--serif);
+    font-size:clamp(20px,3vw,27px);
+    line-height:1.5;
+    color:var(--ink);
+    max-width:640px;
+    margin:30px 0 8px;
+  }
+  .thesis b{color:var(--fact);font-weight:700}
+  .sub{color:var(--ink-soft);max-width:600px;font-size:16.5px}
+
+  /* ---- SIGNATURE: triptych ---- */
+  .triptych{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    margin-top:52px;
+    border:1px solid var(--line-2);
+    background:#fff;
+  }
+  .tri-col{padding:26px 22px 30px;position:relative}
+  .tri-col:not(:last-child){border-right:1px solid var(--line)}
+  .tri-col::before{content:"";position:absolute;top:0;left:0;right:0;height:4px}
+  .tri-col.fact::before{background:var(--fact)}
+  .tri-col.contest::before{background:var(--contest)}
+  .tri-col.myth::before{background:var(--myth)}
+  .tri-tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;margin-bottom:12px}
+  .tri-col.fact .tri-tag{color:var(--fact)}
+  .tri-col.contest .tri-tag{color:var(--contest)}
+  .tri-col.myth .tri-tag{color:var(--myth)}
+  .tri-title{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:8px}
+  .tri-desc{font-size:14px;color:var(--ink-soft);line-height:1.55}
+
+  /* ---- SECTION ---- */
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .sec-num{font-family:var(--mono);font-size:13px;color:var(--myth);letter-spacing:.1em}
+  h2{font-family:var(--serif);font-size:clamp(26px,4vw,34px);font-weight:800;line-height:1.2}
+  .lead{color:var(--ink-soft);max-width:660px;margin:16px 0 30px;font-size:16.5px}
+  h3{font-size:16px;font-weight:700;margin:28px 0 10px;letter-spacing:-.01em}
+  p{margin-bottom:14px}
+  .callout{
+    border-left:3px solid var(--ink);
+    padding:4px 0 4px 20px;
+    font-family:var(--serif);
+    font-size:19px;
+    line-height:1.55;
+    color:var(--ink);
+    margin:6px 0 8px;
+  }
+  .note{background:var(--paper-2);border:1px solid var(--line);padding:18px 20px;font-size:14.5px;color:var(--ink-soft);border-radius:2px}
+  .note b{color:var(--ink)}
+
+  /* ---- TABLES ---- */
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-soft);border-bottom:1.5px solid var(--line-2);font-weight:500;
+  }
+  tbody tr:hover{background:#fff}
+  .num{font-family:var(--mono);white-space:nowrap}
+  td.strong{font-weight:600;color:var(--ink)}
+
+  /* three-class table header colors */
+  .class-tbl thead th:nth-child(1){color:var(--fact)}
+  .class-tbl thead th:nth-child(2){color:var(--contest)}
+  .class-tbl thead th:nth-child(3){color:var(--myth)}
+
+  /* ---- roadmap ---- */
+  .phase{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border-bottom:none}
+  .phase-n{font-family:var(--serif);font-size:34px;font-weight:800;color:var(--line-2);line-height:1}
+  .phase-body h3{margin:0 0 4px}
+  .gate{margin-top:8px;font-family:var(--mono);font-size:12.5px;color:var(--fact);letter-spacing:.02em}
+  .gate::before{content:"→ 진입조건  ";color:var(--ink-soft)}
+
+  /* ---- kpi grid ---- */
+  .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .kpi{background:var(--paper);padding:20px 18px}
+  .kpi .v{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--ink);line-height:1}
+  .kpi .k{font-size:13px;color:var(--ink-soft);margin-top:8px}
+  .kpi .why{font-size:12px;color:var(--ink-soft);margin-top:6px;opacity:.8}
+
+  /* ---- risk ---- */
+  .risk{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+  .risk:last-child{border-bottom:none}
+  .risk-i{font-family:var(--mono);color:var(--myth);font-size:13px;padding-top:2px}
+  .risk h3{margin:0 0 4px}
+  .risk .fix{color:var(--fact);font-size:14px}
+  .risk .fix::before{content:"대응  ";font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-soft)}
+
+  /* ---- footer ---- */
+  footer{padding:48px 0 72px}
+  .disclaimer{font-size:13px;color:var(--ink-soft);font-family:var(--mono);line-height:1.7}
+
+  ul.clean{list-style:none;margin:8px 0 14px}
+  ul.clean li{padding:6px 0 6px 22px;position:relative;font-size:15.5px}
+  ul.clean li::before{content:"—";position:absolute;left:0;color:var(--ink-soft)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  @media(max-width:680px){
+    .triptych{grid-template-columns:1fr}
+    .tri-col:not(:last-child){border-right:none;border-bottom:1px solid var(--line)}
+    .kpi-grid{grid-template-columns:1fr 1fr}
+    .phase{grid-template-columns:44px 1fr;gap:14px}
+    .phase-n{font-size:26px}
+    table{font-size:13px}
+    th,td{padding:9px 8px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow kicker">사업계획서 · Business Plan</div>
+    <h1>더 세이프<span class="en">THE&nbsp;&nbsp;SAFE&nbsp;&nbsp;(가칭)</span></h1>
+    <p class="thesis">사회·역사 이슈에서 <b>검증된 사실</b>과 <b>해석</b>을 분리해 보여주는 편집 미디어. 결론을 강요하지 않고, 판단의 재료를 정리한다.</p>
+    <p class="sub">우리가 파는 것은 결론이 아니라, 사실을 정리하는 편집 기술과 그 과정의 투명성이다.</p>
+
+    <div class="triptych" aria-label="시그니처: 3분류 포맷">
+      <div class="tri-col fact">
+        <div class="tri-tag">VERIFIED</div>
+        <div class="tri-title">확정된 사실</div>
+        <div class="tri-desc">1차 출처(기록물·논문·판결문·통계)로 교차 검증된 것.</div>
+      </div>
+      <div class="tri-col contest">
+        <div class="tri-tag">CONTESTED</div>
+        <div class="tri-title">아직 논쟁 중</div>
+        <div class="tri-desc">자료마다 해석이 갈리는 것. 어느 쪽도 확정으로 다루지 않는다.</div>
+      </div>
+      <div class="tri-col myth">
+        <div class="tri-tag">MYTH</div>
+        <div class="tri-title">흔한 오해</div>
+        <div class="tri-desc">사실처럼 퍼졌지만 근거가 없는 것. 왜 틀렸는지까지 밝힌다.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>문제 정의 & 미션</h2></div>
+    <p class="lead"><b style="color:var(--ink)">문제.</b> 사회 이슈가 밈·혐오로 소비되고 감정이 사실을 압도한다. 사실과 해석이 뒤섞여, "무엇이 확정된 사실이고 무엇이 아직 논쟁인지" 정리해주는 곳이 없다.</p>
+    <p class="callout">검증된 1차 자료를 근거로, 사회적 논쟁에서 사실과 해석을 분리해 보여주는 담론 미디어를 만든다.</p>
+    <div class="note"><b>관점 전환.</b> "완전 중립"은 표방하는 순간 모든 진영에서 공격받는다. 그래서 우리는 '중립'이 아니라 <b>'관점 투명성'</b>을 판다. 결론이 아니라 편집 방식을 공개한다.</div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>타겟 & 구독 동기</h2></div>
+    <ul class="clean">
+      <li><b>1차 타겟</b> — 사회 이슈에 관심 있으나 자극적 커뮤니티 여론에 피로감을 느끼는 2030.</li>
+      <li><b>가치 소비층</b> — 역사 인식·사회 감수성을 중시하고, "저장해뒀다 인용할 자료"를 찾는 집단.</li>
+    </ul>
+    <div class="note"><b>핵심 구독 동기(가설).</b> "이 계정 자료는 나중에 이 주제 나올 때 근거로 쓸 수 있다." → 그래서 핵심 지표가 좋아요가 아니라 <b>저장률·공유율</b>이다.</div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>시그니처 콘텐츠 시스템</h2></div>
+    <p class="lead">이 사업의 진짜 엔진. 팩트체크·참고문헌 정리는 노동집약적이라, 형식을 시스템화하지 않으면 지속되지 않는다.</p>
+
+    <h3>3분류 포맷 — 브랜드 자산이자 방어선</h3>
+    <table class="class-tbl">
+      <thead><tr><th>확정된 사실</th><th>아직 논쟁 중</th><th>흔한 오해</th></tr></thead>
+      <tbody><tr>
+        <td>1차 출처로 검증됨</td>
+        <td>자료마다 해석이 갈림</td>
+        <td>사실처럼 도는 틀린 정보</td>
+      </tr></tbody>
+    </table>
+    <p>모든 콘텐츠의 마지막 장은 항상 <b>"우리가 고민해야 할 논점 3가지"</b> — 결론 대신 질문을 남긴다.</p>
+
+    <h3>콘텐츠 1편 표준 워크플로우</h3>
+    <table>
+      <thead><tr><th>단계</th><th>산출물</th><th style="text-align:right">소요</th></tr></thead>
+      <tbody>
+        <tr><td class="strong">주제 선정</td><td>후보 3개 중 1개 (기준: 검증 가능성 &gt; 관심도)</td><td class="num" style="text-align:right">0.5일</td></tr>
+        <tr><td class="strong">1차 리서치</td><td>1차 출처(기록물·논문·판결문·통계) 최소 3개</td><td class="num" style="text-align:right">1일</td></tr>
+        <tr><td class="strong">사실/해석 분리</td><td>3분류 표 작성</td><td class="num" style="text-align:right">0.5일</td></tr>
+        <tr><td class="strong">카드뉴스화</td><td>8~10장</td><td class="num" style="text-align:right">1일</td></tr>
+        <tr><td class="strong">검증</td><td>인용 오류·왜곡 셀프체크 통과</td><td class="num" style="text-align:right">0.5일</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><b>핵심 제약.</b> 1인 기준 주 2~3편이 현실적 한계. Phase 2 진입 시 리서처·에디터 외주 구조를 미리 설계해야 한다.</div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>서비스 로드맵</h2></div>
+    <p class="lead">각 단계에 "다음 단계로 넘어가는 최소 조건(게이트)"을 둔다. 조건 미달 시 확장하지 않는다.</p>
+    <div class="phase">
+      <div class="phase-n">01</div>
+      <div class="phase-body"><h3>인스타 카드뉴스 (팩트체크)</h3><p style="margin:0;color:var(--ink-soft)">인지도·구독자 확보</p><div class="gate">팔로워 1만 · 평균 저장률 5% · 무료 뉴스레터 대기 300명</div></div>
+    </div>
+    <div class="phase">
+      <div class="phase-n">02</div>
+      <div class="phase-body"><h3>유료 뉴스레터 (심층·참고문헌)</h3><p style="margin:0;color:var(--ink-soft)">충성 팬덤·멤버십</p><div class="gate">유료 100명 · 오픈율 40% 3개월 유지</div></div>
+    </div>
+    <div class="phase">
+      <div class="phase-n">03</div>
+      <div class="phase-body"><h3>온라인 살롱(Zoom)·오프라인 모임</h3><p style="margin:0;color:var(--ink-soft)">커뮤니티화·수익화</p><div class="gate">살롱 유료 참가 누적 200명 · 강연 인바운드 발생</div></div>
+    </div>
+    <div class="phase">
+      <div class="phase-n">04</div>
+      <div class="phase-body"><h3>도서 출판·강연·교육</h3><p style="margin:0;color:var(--ink-soft)">전문가 브랜드·B2B/B2G 확장</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>수익 모델 & 유닛 이코노믹스</h2></div>
+    <p class="lead">구독은 신뢰 자산, 실제 현금흐름은 강연·교육·출판. 무게중심을 명확히 나눈다.</p>
+    <h3>매출 시뮬레이션 <span style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);font-weight:400">※벤치마크 가정치 — 실측 교체 필요</span></h3>
+    <p style="font-size:14px;color:var(--ink-soft)">가정: 팔로워→무료구독 5%, 무료→유료 4%, 구독료 7,000원</p>
+    <table>
+      <thead><tr><th>팔로워</th><th>무료 구독</th><th>유료 전환</th><th style="text-align:right">구독 월매출</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1만</td><td class="num">500</td><td class="num">20</td><td class="num" style="text-align:right">14만 원</td></tr>
+        <tr><td class="num">5만</td><td class="num">2,500</td><td class="num">100</td><td class="num" style="text-align:right">70만 원</td></tr>
+        <tr><td class="num">10만</td><td class="num">5,000</td><td class="num">200</td><td class="num" style="text-align:right;color:var(--myth)">140만 원</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><b>결론.</b> 구독만으로는 팔로워 10만이어도 월 140만 원 수준. 따라서 구독은 "전문성을 증명해 <b>강연 단가를 올리는 신뢰 자산</b>"으로 포지셔닝하고, 실제 현금흐름은 강연·교육·출판(B2B·B2G)에 둔다.</div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">06</span><h2>핵심 지표 (KPI)</h2></div>
+    <p class="lead">팔로워 수가 아니라 팬덤 밀도를 본다.</p>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="v">5%+</div><div class="k">게시물 저장률</div><div class="why">"다시 볼 가치" = 자료성</div></div>
+      <div class="kpi"><div class="v">3%+</div><div class="k">공유율</div><div class="why">유기적 확산</div></div>
+      <div class="kpi"><div class="v">40%+</div><div class="k">뉴스레터 오픈율</div><div class="why">팬덤 밀도</div></div>
+      <div class="kpi"><div class="v">8%+</div><div class="k">클릭률(CTR)</div><div class="why">콘텐츠 품질</div></div>
+      <div class="kpi"><div class="v">4%+</div><div class="k">유료 전환율</div><div class="why">수익 지속성</div></div>
+      <div class="kpi"><div class="v">≤5%</div><div class="k">월 이탈률(churn)</div><div class="why">구독 건강도</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">07</span><h2>리스크 & 대응</h2></div>
+    <div class="risk"><div class="risk-i">R1</div><div><h3>명예훼손·저작권</h3><p style="margin:0 0 6px">국내법상 사실 적시도 처벌 가능. 실명·특정 사건은 리스크가 크다.</p><div class="fix">인용 원칙·표현 가이드라인 문서화. "이만큼 신중하다"는 신뢰 마케팅으로 역이용.</div></div></div>
+    <div class="risk"><div class="risk-i">R2</div><div><h3>번아웃·확장성 한계</h3><p style="margin:0 0 6px">1인 팩트체크는 지속 불가.</p><div class="fix">Phase 2부터 리서처/에디터 파트너·외주 구조 도입.</div></div></div>
+    <div class="risk"><div class="risk-i">R3</div><div><h3>중립성 프레임 공격</h3><p style="margin:0 0 6px">"이게 중립이냐" 논란.</p><div class="fix">'중립'이 아니라 '관점 투명성'을 판다(01 포지셔닝).</div></div></div>
+    <div class="risk"><div class="risk-i">R4</div><div><h3>시작 소재 리스크</h3><p style="margin:0 0 6px">휘발성 사건으로 시작하면 이슈가 식을 때 정체성이 흔들린다.</p><div class="fix">첫 소재는 관심도보다 "편집 방식을 가장 잘 시연할 사건"으로 선정.</div></div></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">08</span><h2>첫 90일 실행안</h2></div>
+    <table>
+      <thead><tr><th>주차</th><th>할 일</th></tr></thead>
+      <tbody>
+        <tr><td class="num strong">1–2주</td><td>브랜드명·톤 확정, 3분류 템플릿 디자인 확정</td></tr>
+        <tr><td class="num strong">3–4주</td><td>첫 소재 3건 리서치(방법론 시연용), 인용/표현 가이드라인 v1</td></tr>
+        <tr><td class="num strong">5–8주</td><td>카드뉴스 주 2편 발행 시작, 무료 뉴스레터 대기 폼 오픈</td></tr>
+        <tr><td class="num strong">9–12주</td><td>저장률·공유율 측정 → 되는 포맷 고정, 뉴스레터 파일럿 1회</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><b>90일 목표.</b> 저장률 5% 달성 포맷 확정 + 뉴스레터 대기자 300명 → Phase 2 게이트 통과 준비.</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="disclaimer">※ 전환율·매출 수치는 일반 벤치마크 가정치입니다. 지원사업·투자용으로 쓸 경우 국내 뉴스레터 플랫폼(스티비·메일리) 실측 지표로 교체를 권장합니다.<br>더 세이프(The Safe · 가칭) — 사업계획서 v1</p>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
