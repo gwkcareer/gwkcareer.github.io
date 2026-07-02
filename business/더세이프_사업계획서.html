@@ -1,3 +1,6 @@
+---
+sitemap: false
+---
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -96,6 +99,26 @@
   .tri-col.myth .tri-tag{color:var(--myth)}
   .tri-title{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:8px}
   .tri-desc{font-size:14px;color:var(--ink-soft);line-height:1.55}
+
+  /* ---- WHY BAND (브랜드 상위 약속) ---- */
+  .why-band{background:var(--ink);color:var(--paper);padding:60px 0}
+  .why-band .eyebrow{color:#9AA6C4}
+  .why-band .why-lead{
+    font-family:var(--serif);
+    font-size:clamp(26px,4.4vw,40px);
+    line-height:1.38;
+    max-width:720px;
+    margin-top:18px;
+  }
+  .why-band .why-lead b{color:#E8C36B;font-weight:800}
+  .why-band .why-sub{color:#B9C0D4;max-width:580px;margin-top:18px;font-size:16px;line-height:1.7}
+  .why-band .chips{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+  .why-band .chip{
+    font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+    padding:8px 14px;border:1px solid rgba(255,255,255,.22);color:var(--paper);
+  }
+  .why-band .chip .x{color:#C98A7E}
+  .why-band .chip .o{color:#7FC9AE}
 
   /* ---- SECTION ---- */
   section{padding:64px 0;border-bottom:1px solid var(--line)}
@@ -209,6 +232,19 @@
   </div>
 </header>
 
+<section class="why-band reveal">
+  <div class="wrap">
+    <div class="eyebrow">Why · 우리가 파는 것</div>
+    <p class="why-lead">우리가 파는 건 정보가 아니라 <b>'생각의 확장'</b>입니다.</p>
+    <p class="why-sub"><b style="color:#E8C36B">검증된 사실은 재료, 생각의 확장은 목적이다.</b> 사실 · 논쟁 · 오해로 나눠 보는 습관, 그 자체가 사고를 넓히는 도구다. 무엇을 믿을지 정해주지 않고, 어떻게 생각할지의 방법을 남긴다. 그래서 이 습관은 혼자 읽는 데서 그치지 않고, 식탁에서 아이와 나누고, 살롱에서 토론하며 넓어진다.</p>
+    <div class="chips">
+      <span class="chip"><span class="x">✕</span> 정보를 외우게</span>
+      <span class="chip"><span class="o">○</span> 나눠서 생각하게</span>
+      <span class="chip">읽기 → 나누기 → 토론</span>
+    </div>
+  </div>
+</section>
+
 <main>
 
 <section class="reveal">
@@ -234,18 +270,26 @@
 <section class="reveal">
   <div class="wrap">
     <div class="sec-head"><span class="sec-num">03</span><h2>시그니처 콘텐츠 시스템</h2></div>
-    <p class="lead">이 사업의 진짜 엔진. 팩트체크·참고문헌 정리는 노동집약적이라, 형식을 시스템화하지 않으면 지속되지 않는다.</p>
+    <p class="lead">이 사업의 진짜 엔진. 소재가 늘어도 정체성이 흔들리지 않도록, 모든 콘텐츠를 하나의 포맷으로 처리한다.</p>
 
-    <h3>3분류 포맷 — 브랜드 자산이자 방어선</h3>
-    <table class="class-tbl">
-      <thead><tr><th>확정된 사실</th><th>아직 논쟁 중</th><th>흔한 오해</th></tr></thead>
-      <tbody><tr>
-        <td>1차 출처로 검증됨</td>
-        <td>자료마다 해석이 갈림</td>
-        <td>사실처럼 도는 틀린 정보</td>
-      </tr></tbody>
+    <h3>소재 — '해석이 필요한 텍스트' 전부</h3>
+    <p>뉴스·책·전시·영화·음악처럼 <b>"보고 나서 생각할 거리가 남는 것"</b>을 다룬다. 소재를 나열로 늘리지 않고 두 타입으로 묶어, 아무리 확장해도 정체성이 유지된다.</p>
+    <ul class="clean">
+      <li><b>사실형</b> — 사회 이슈·책. 사실 검증이 핵심. <span style="color:var(--fact)">→ 정체성의 중심</span></li>
+      <li><b>해석형</b> — 문화·예술. 정답이 없어 해석 훈련이 핵심. <span style="color:var(--ink-soft)">→ 저변 확장 소재</span></li>
+    </ul>
+
+    <h3>3분류 포맷 — 소재 타입별 라벨 변주</h3>
+    <table>
+      <thead><tr><th></th><th>사실형 (사회·책)</th><th>해석형 (문화·예술)</th></tr></thead>
+      <tbody>
+        <tr><td style="border-left:3px solid var(--fact);font-family:var(--mono);font-size:12px;color:var(--fact)">1칸</td><td>확정된 사실</td><td>작품이 실제로 보여준 것 (팩트)</td></tr>
+        <tr><td style="border-left:3px solid var(--contest);font-family:var(--mono);font-size:12px;color:var(--contest)">2칸</td><td>아직 논쟁 중</td><td>해석이 갈리는 지점</td></tr>
+        <tr><td style="border-left:3px solid var(--myth);font-family:var(--mono);font-size:12px;color:var(--myth)">3칸</td><td>흔한 오해</td><td>흔한 오독 · 클리셰 감상</td></tr>
+      </tbody>
     </table>
-    <p>모든 콘텐츠의 마지막 장은 항상 <b>"우리가 고민해야 할 논점 3가지"</b> — 결론 대신 질문을 남긴다.</p>
+    <p>공통 뼈대(3칸 + 논점 3가지)는 유지하고 라벨만 타입에 맞춰 바꾼다. → 브랜드 일관성과 소재 유연성을 동시에 잡는다. 모든 콘텐츠의 마지막 장은 항상 <b>"우리가 고민해야 할 논점 3가지"</b> — 결론 대신 질문을 남긴다.</p>
+    <div class="note"><b>비중 관리.</b> 예술 소재는 진입 문턱이 낮아 초기 유입엔 좋지만, 커지면 "팩트 기반" 신뢰가 희석된다. <b>사실형을 중심에, 해석형은 확장 소재로</b> 비중을 관리한다.</div>
 
     <h3>콘텐츠 1편 표준 워크플로우</h3>
     <table>
